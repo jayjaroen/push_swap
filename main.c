@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/17 13:57:07 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/02/18 17:25:57 by jjaroens         ###   ########.fr       */
+/*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
+/*   Updated: 2024/02/18 18:00:25 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 
 int	ft_atoi(const char *str)
 {
@@ -36,13 +35,6 @@ int	ft_atoi(const char *str)
 	}
 	return (sign * num);
 }
-
-typedef struct s_stack
-{
-	int				value;
-	struct s_stack	*next; //storing the address of the previous node
-	struct s_stack	*previous; //storing the address of the last node
-}	t_stack;
 
 void	ft_add_to_stack(char *argv, t_stack **a)
 {
@@ -82,6 +74,7 @@ void	ft_print_stack(t_stack **stack)
 	while (print_stack != NULL)
 	{
 		printf("%d\n", print_stack -> value);
+		// add print f to libft?
 		print_stack = print_stack -> next;
 	}
 }
