@@ -6,95 +6,34 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/02/18 18:00:25 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:12:56 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int	ft_atoi(const char *str)
+/*The main function - Blue Print:
+	1. Receive the arguments
+	2. Check if the argument is valid: more than 1 argc. If only one argument,
+	exit the program
+	3. Check if the arguments are 2 argc, check if the second argument contains
+	many arguments inside, for instance, "1 2 3 4" 
+		3.1 looping to check if the arguments contained only numbers - if not, then exit
+		3.2 Separate the words inside the arguments" 1 2 3 4"- after making sure that
+		it contains only numbers
+		3.3 Is there a repeat number in the stack? --> if there is, then exit (double loop?)
+	4. Creating a list of arguments A 
+	5. Check if stack A is sorted - sorted then doing nothing
+	6. Sorting stack A (3 arguments -> tiny sort || more than 3):
+		6.1 push to stack B
+		6.2 the minimum steps to push A & b  */
+int	main(int argc, char **argv)
 {
-	int	num;
-	int	sign;
-
-	sign = 1;
-	num = 0;
-	while ((*str >= 9 && *str <= 13) || *str == 32)
-		str++;
-	if (*str == 43 || *str == 45)
-	{
-		if (*str == 45)
-			sign = -1;
-		str++;
-	}
-	while (*str >= 48 && *str <= 57)
-	{
-		num = (num * 10) + (*str - 48);
-		str++;
-	}
-	return (sign * num);
-}
-
-void	ft_add_to_stack(char *argv, t_stack **a)
-{
-	t_stack	*new;
-	t_stack *ptr;
-	
-	if (!argv)
-		return ;
-	ptr = *a; // not changing to the stack a
-	new = malloc(sizeof(t_stack));
-	if (new == NULL)
-		return ;
-	new -> value = ft_atoi(argv);
-	while (ptr -> next != NULL)
-		ptr = ptr -> next;
-	ptr -> next = new;	
-// implementing double / singular --> circulate 
-}
-
-t_stack	*ft_add_first(char *argv)
-{
-	t_stack	*first;
-	
-	first = malloc(sizeof(t_stack));
-	if (first == NULL)
-		return (NULL);
-	first -> value = ft_atoi(argv);
-	first -> next = NULL;
-	return (first);
-}
-
-void	ft_print_stack(t_stack **stack)
-{
-	t_stack	*print_stack;
-
-	print_stack = *stack;
-	while (print_stack != NULL)
-	{
-		printf("%d\n", print_stack -> value);
-		// add print f to libft?
-		print_stack = print_stack -> next;
-	}
-}
-
-int main(int argc, char **argv)
-{
-	t_stack *stack_a;
+	t_node	*list_a;
 	int		i;
 	
-	if (argc < 3 || !argv[1][0])
+	if (argc < 2 || argv[1][0] == NULL)
 		return (1);
-	stack_a = NULL;
-	i = 1;
-	while (argv[i])
-	{
-		if (stack_a == NULL)
-			stack_a = ft_add_first(argv[i]);
-		else
-			ft_add_to_stack(argv[i], &stack_a);
-		i++;	
-	}
-	ft_print_stack(&stack_a);
+	list_a = NULL;
+	// function to check the argv //
 }

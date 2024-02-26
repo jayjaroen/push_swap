@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:56:53 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/02/25 16:35:19 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:44:43 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,7 @@ int	main(void)
 	printf("the refer of main %p\n", &list);
 	// ft_swap(&list);
 	ft_rotate_down(&list); //234561
-	ft_rotate_up(&list);
+	ft_rotate_up(&list); 
 	ft_rotate_up(&list);//612345
 	extract = ft_extract_node(&list);
 	printf("the extracted node: %d\n", extract->value); //6

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 22:08:45 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/02/25 22:17:02 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:48:45 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,30 +225,36 @@ void	ft_add_node(t_node **list, t_node *new)
 		*list = new;
 	}
 }
-///////add to stack///////////
+
 
 int	main(int argc, char **argv)
 {
 	t_node	*list;
 	t_node	*extract;
+	t_stack	*a;
+	t_stack	*b;
 	int i;
 
 	list = NULL;
 	i = 1;
+	b = NULL;
 	// add back to the node
 	while (argv[i])
 	{
 		ft_add_list_back(&list, ft_atoi(argv[i]));
 		i++;
 	}
-	printf("the refer of main %p\n", &list);
+	////// pushing to stack b //////////
+	a->head = list;
+	///////// The algorithm to rotate the stack && extract the node///////
+	// printf("the refer of main %p\n", &list);
 	// ft_swap(&list);
-	ft_rotate_down(&list); //234561
-	ft_rotate_up(&list);
-	ft_rotate_up(&list);//612345
-	extract = ft_extract_node(&list);
-	printf("the extracted node: %d\n", extract->value); //6
-	ft_add_node(&list, extract);//612345
+	// ft_rotate_down(&list); //234561
+	// ft_rotate_up(&list);
+	// ft_rotate_up(&list);//612345
+	// extract = ft_extract_node(&list);
+	// printf("the extracted node: %d\n", extract->value); //6
+	// ft_add_node(&list, extract);//612345
 	ft_print_output(list); // the address of reference
-	ft_free_node(&list);
+	// ft_free_node(&list);
 }
