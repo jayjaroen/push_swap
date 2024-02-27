@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 16:49:10 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/02/24 21:53:03 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/02/24 23:18:01 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	main(int argc, char **argv)
 	t_stack *tail;
 	int		i;
 
-	if (argc == 1)
+	if (argc == 1 || argv[2] == NULL)
 		return (1);
 	stack_a = NULL;
 	tail = NULL;
