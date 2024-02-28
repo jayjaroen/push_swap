@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 22:09:26 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/02/27 22:26:08 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:49:26 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,25 @@ int	ft_is_valid(int argv)
 	return (1);
 }
 
-int    ft_check_argv(char *argv)
+int    ft_check_argv(int argc, char **argv)
 {
     int	i;
+	int	j;
 	int	result;
 
-	i = 0;
+	i = 1;
+	j = 0;
 	result = 0;
-	while (argv[i])
+	while (i < argc)
 	{
-		result = ft_is_valid((int)argv[i]);
-		if (result == 1)
-			return (result);
+		j = 0;
+		while (argv[i][j])
+		{
+			result = ft_is_valid((int)argv[i][j]);
+			if (result == 1)
+				return (result);
+			j++;
+		}
 		i++;
 	}
 	return (result);
@@ -50,25 +57,16 @@ int    ft_check_argv(char *argv)
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	j;
-	int	result;
-	char	**ptr;
+    int	result;
 
-	i = 1;
-	j = 0;
-	ptr = argv;
-	while (ptr[i])
+	result = ft_check_argv(argc,argv);
+	if (result == 1)
 	{
-		result = ft_check_argv(ptr[i]);
-		if (result == 1)
-		{
-			printf("Error"); //error function
-			return (1);
-		}
-		i++;
+		printf("Error"); //error function
+		return (1);
 	}
 }
+
 
 // int	main(void)
 // {
