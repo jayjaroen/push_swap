@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 10:56:53 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/02/26 12:44:43 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:02:00 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,5 +252,6 @@ int	main(void)
 	ft_add_node(&list, extract);//612345
 	ft_print_output(list); // the address of reference 
 	ft_free_node(&list);
+
 }
 

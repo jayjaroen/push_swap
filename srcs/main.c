@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/02/27 20:07:46 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:40:03 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,36 @@
 	6. Sorting stack A (3 arguments -> tiny sort || more than 3):
 		6.1 push to stack B
 		6.2 the minimum steps to push A & b  */
+
+#include <stdio.h> // To delete printf later
+
 int	main(int argc, char **argv)
 {
-	t_node	*list_a;
-	int		i;
-
-	if (argc < 2 || argv[1][0] == NULL)
+	// t_node	*list_a;
+	// char	*ptr;
+	int		result;
+	// int		i;
+	
+	// list_a = NULL;
+	if (argc < 2 || !argv[1][0])
 		return (1);
-	list_a = NULL;
+	result = ft_check_argv(argc, argv);//create function to check error
+	if (result == 1)
+	{
+		printf("Error\n");
+		return (1);
+	}
+	// if (argc == 2)
+	// {
+	// 	ptr = ft_split(argv[1], ' ');
+			
+	// }
+	// else if (argc > 2)
+	// {
+		
+	// }
+	
+	// list_a = NULL;
     
 	// function to check the argv //
 }

@@ -6,13 +6,16 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:28:13 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/02/26 14:35:22 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:05:11 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_node	*ft_extract_node(t_node **list) //extract node - set to null/ 1 node / 2 node / 3 node --> change the pointer
+/*The fle contains the function that works work with circular double linked list
+*/
+//extract node - set to null/ 1 node / 2 node / 3 node --> change the pointer
+#include <stdio.h> /// TO BE DELETED !!!
+t_node	*ft_extract_node(t_node **list)
 {
 	t_node	*extract;
 	extract = *list;
@@ -67,7 +70,7 @@ void	ft_add_node(t_node **list, t_node *new)
 		*list = new;
 	}
 }
-
+//what is the difference between this function and above?
 void	ft_add_list_back(t_node **list, int i)
 {
 	t_node	*new;
@@ -79,9 +82,7 @@ void	ft_add_list_back(t_node **list, int i)
 		ft_free_node(list);
 		return ;
 	}
-
 	//need to free after --> error hand - check stack a & b
-
 	head = *list;
 	new -> value = i;
 	/// first node ////
@@ -132,10 +133,8 @@ void	ft_free_node(t_node **list)
 
 void	ft_print_output(t_node *list)
 {
-	int	i;
 	t_node	*head;
 
-	i = 0;
 	if (!list)
 		return ;
 	head = list;

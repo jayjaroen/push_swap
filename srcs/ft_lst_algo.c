@@ -6,26 +6,29 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:32:25 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/02/26 14:33:29 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:56:19 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rotate_up(t_node **list) //the first element become last one
+/* This file contains functions that move the element within the stack*/
+//the first element become last one (ra, rb)
+void	ft_rotate(t_node **list)
 {
 	if (!(*list) || (*list)->next == NULL)
 		return ;
 	*list = (*list)->previous;
 }
-
-void	ft_rotate_down(t_node **list)
+//the last element become the first one (rra, rrb)
+void	ft_rotate_reverse(t_node **list)
 {
 	if(!(*list) || (*list)->next == NULL)
 		return ;
 	*list = (*list)->next;
 }
-
+// swap the position between the first top two elements
+// sa, sb
 void	ft_swap(t_node **list)
 {
 	t_node	*a;
