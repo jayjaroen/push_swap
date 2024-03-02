@@ -1,44 +1,55 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/01 14:56:58 by jjaroens          #+#    #+#              #
-#    Updated: 2024/03/01 16:38:22 by jjaroens         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = cub3d
 
-NAME = push_swap
-
-SRCS = srcs/main.c srcs/push_swap.c srcs/ft_lst_algo.c srcs/ft_lst_utils.c \
-	srcs/ft_check_argv_utils.c libft/ft_bzero.c libft/ft_calloc.c \
-	libft/ft_strlen.c libft/ft_strlcpy.c libft/ft_split.c
-
-OBJ = $(SRCS:.c=.o)
+MLX_DIR = minilibx
+LIB_DIR = libft
+SRC_DIR = srcs
+HEADER = srcs/push_swap.h
+INCLUDES = 	-I$(LIB_DIR) \
+			-I$(SRC_DIR)
+			
+LINK_LIB = -L$(LIB_DIR) -lft
 
 CC = cc
+# CFLAGS = -Wall -Werror -Wextra $(INCLUDES) -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra $(INCLUDES)
 
-CFLAGS = -Wall -Wextra -Werror
+SRCS = main_test.c
 
-# .c.o:
-# 	cc $(CFLAGS) -c $< -o $(<:.c=.o)
-
-$(NAME): $(OBJ)
-	$(MAKE) -C libft
-	$(CC) $(CFLAGS) ./libft/libft.a $(OBJ) -o $(NAME)
+OBJS = $(SRCS:.c=.o) 
 
 all: $(NAME)
 
+# $(NAME): $(OBJS) $(HEADER) Makefile
+# 	$(MAKE) -C $(LIB_DIR)
+# 	$(CC) $(CFLAGS) $(LINK_LIB) $(OBJS) -o $(NAME)
+
+$(NAME): $(HEADER) Makefile
+	$(MAKE) -C $(LIB_DIR)
+	$(CC) $(CFLAGS) $(LINK_LIB) $(SRCS) -o $(NAME)
+
 clean:
-	rm -f $(OBJ)
+	$(MAKE) -C $(LIB_DIR) clean
+	rm -rf $(OBJS)
 
 fclean: clean
-	$(MAKE) fclean -C libft
-	rm -f ./libft/libft.a
-	rm -f push_swap
+	rm -rf $(LIB_DIR)/libft.a
+	rm -rf $(NAME)
 
-re : fclean all
+l:
+	leaks --atExit -- ./$(NAME) $(MAP)
+
+# v:
+# 	valgrind --leak-check=full ./$(NAME) $(MAP)
+
+m:
+	./$(NAME) $(MAP)
+
+norminette:
+	@norminette -R CheckForbiddenSourceHeader $(LIB_DIR)/*.c
+	@norminette -R CheckDefine $(LIB_DIR)/includes/libft.h
+	@norminette -R CheckForbiddenSourceHeader $(SRC_DIR)
+	@norminette -R CheckDefine $(SRC_DIR)/cub3d.h
+
+re: fclean all
 
 .PHONY: all clean fclean re

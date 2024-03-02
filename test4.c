@@ -6,16 +6,17 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 22:08:45 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/02/26 14:48:45 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/02 18:07:56 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "push_swap.h"
+#include "srcs/push_swap.h"
 
 void	ft_free_node(t_node **list);
+void	ft_bzero(void *s, size_t n);
 
 int	ft_atoi(const char *str)
 {
@@ -40,28 +41,30 @@ int	ft_atoi(const char *str)
 	return (sign * num);
 }
 
-void	ft_add_list_back(t_node **list, int i)
+// add min add max
+void	ft_add_list_back(t_stack *stack, int i)
 {
 	t_node	*new;
 	t_node 	*head;
-
+		
 	new = malloc(sizeof(t_node));
 	if (!new)
 	{
-		ft_free_node(list);
+		ft_free_node(&stack->head); //double pointer >reference of address of head is a double pointer
 		return ;
 	}
 
 	//need to free after --> error hand - check stack a & b
-
-	head = *list;
+	head = stack->head;
 	new -> value = i;
 	/// first node ////
 	if (head == NULL)
 	{
 		new -> previous = NULL;
 		new -> next = NULL;
-		*list = new;
+		stack->head = new;
+		stack->min = new;
+		stack->max = new;
 	}
 	else if (head->next == NULL)
 	{
@@ -69,6 +72,10 @@ void	ft_add_list_back(t_node **list, int i)
 		new -> previous = head;
 		head -> previous = new;
 		head -> next = new;
+		if (new->value > stack->max->value)
+			stack->max = new;
+		if (new->value < stack->min->value)
+			stack->min = new;
 	}
 	else
 	{
@@ -76,7 +83,12 @@ void	ft_add_list_back(t_node **list, int i)
 		new -> previous = head -> previous;
 		new -> previous -> next = new; // update the last node of the list
 		head -> previous = new;
+		if (new->value > stack->max->value)
+			stack->max = new;
+		if (new->value < stack->min->value)
+			stack->min = new;
 	}
+	stack->n += 1; //size of stack every time adding the new node
 }
 
 void	ft_free_node(t_node **list)
@@ -104,16 +116,16 @@ void	ft_free_node(t_node **list)
 
 void	ft_print_output(t_node *list)
 {
-	int	i;
+	// int	i;
 	t_node	*head;
 
-	i = 0;
+	// i = 0;
 	if (!list)
 		return ;
 	head = list;
-	printf("the address of ptr: %p\n", head);
-	printf("the address of ptr -> next: %p\n", head->next);
-	printf("the refer of function: %p\n", &list);
+	// printf("the address of ptr: %p\n", head);
+	// printf("the address of ptr -> next: %p\n", head->next);
+	// printf("the refer of function: %p\n", &list);
 	while (1)
 	{
 		// if (list)
@@ -225,27 +237,95 @@ void	ft_add_node(t_node **list, t_node *new)
 		*list = new;
 	}
 }
+// list size // count size 
+// small soring algo
+// sorting function( 2 function: sorting from the head (top && check min)) 
+// bool	ft_check_duplicate_num(t_node **list)
+// {
+	
+// }
 
+int	ft_count_node(t_node **list)
+{
+	t_node *ptr;
+	int		count;
+
+	count = 0;
+	ptr = *list;
+	while (1)
+	{
+		ptr = ptr->next;
+		++count;
+		if (ptr == *list)
+			break ;
+	}
+	printf("the number of nodes is: %d\n", count);
+	return (count);
+}
+
+int	ft_is_sort(t_node *head)
+{
+	t_node	*ptr;
+
+	ptr = head;
+	if (ptr->next == NULL)
+		return (0);
+	while (ptr->next != head)
+	{
+		if (ptr->value >= ptr->next->value)
+			return (1);
+		ptr = ptr->next;
+	}
+	return (0);
+}
+
+/// The function handle only three elements in stack
+// void	ft_sort_small(t_stack *stack)
+// {
+// 	t_node	*ptr;
+
+// 	ptr = head;
+// 	while (ptr->next != head)
+// 	{
+// 		if (ptr = )
+// 	}	
+// }
 
 int	main(int argc, char **argv)
 {
-	t_node	*list;
-	t_node	*extract;
-	t_stack	*a;
-	t_stack	*b;
+	t_stack	stack_a;
+	// t_node	*list;
 	int i;
+	int	size_arg;
 
-	list = NULL;
-	i = 1;
-	b = NULL;
-	// add back to the node
-	while (argv[i])
+	// list = NULL;
+	ft_bzero(&stack_a,sizeof(t_stack));
+	i = 1;	
+	while (i < argc)
 	{
-		ft_add_list_back(&list, ft_atoi(argv[i]));
+		ft_add_list_back(&stack_a, ft_atoi(argv[i]));
 		i++;
 	}
-	////// pushing to stack b //////////
-	a->head = list;
+	// check duplicate number
+	// if duplicate, exit out
+	// count size
+	// small sort -> algo (within the stack)
+	// ft_check_duplicate_num(&list);
+	// size_arg = ft_count_node(&list);
+	ft_print_output(stack_a.head); // the address of reference
+	printf("the total number of nodes: %zu\n", stack_a.n); //pointer using "->"
+	printf("the maximum value of nodes: %d\n", stack_a.max->value);
+	printf("the minimum value of nodes: %d\n", stack_a.min->value);
+	/// check sort take head && min
+	if (ft_is_sort(stack_a.head) == 0)
+		return (0);
+	if (stack_a.n == 3)
+	{
+		ft_sort_small(stack_a.head);
+	}
+	printf("%d\n", ft_is_sort(stack_a.head));
+	
+}
 	///////// The algorithm to rotate the stack && extract the node///////
 	// printf("the refer of main %p\n", &list);
 	// ft_swap(&list);
@@ -255,6 +335,19 @@ int	main(int argc, char **argv)
 	// extract = ft_extract_node(&list);
 	// printf("the extracted node: %d\n", extract->value); //6
 	// ft_add_node(&list, extract);//612345
-	ft_print_output(list); // the address of reference
+	// ft_print_output(list); // the address of reference
 	// ft_free_node(&list);
+void	ft_bzero(void *s, size_t n)
+{
+	size_t			i;
+	unsigned char	*ptr;
+
+	i = 0;
+	ptr = (unsigned char *)s;
+	while (i < n)
+	{
+		*ptr = 0;
+		ptr++;
+		i++;
+	}
 }
