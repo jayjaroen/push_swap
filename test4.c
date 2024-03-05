@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 22:08:45 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/02 18:07:56 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/05 22:29:47 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_add_list_back(t_stack *stack, int i)
 {
 	t_node	*new;
 	t_node 	*head;
-		
+
 	new = malloc(sizeof(t_node));
 	if (!new)
 	{
@@ -237,12 +237,12 @@ void	ft_add_node(t_node **list, t_node *new)
 		*list = new;
 	}
 }
-// list size // count size 
+// list size // count size
 // small soring algo
-// sorting function( 2 function: sorting from the head (top && check min)) 
+// sorting function( 2 function: sorting from the head (top && check min))
 // bool	ft_check_duplicate_num(t_node **list)
 // {
-	
+
 // }
 
 int	ft_count_node(t_node **list)
@@ -280,16 +280,36 @@ int	ft_is_sort(t_node *head)
 }
 
 /// The function handle only three elements in stack
-// void	ft_sort_small(t_stack *stack)
-// {
-// 	t_node	*ptr;
-
-// 	ptr = head;
-// 	while (ptr->next != head)
-// 	{
-// 		if (ptr = )
-// 	}	
-// }
+void	ft_sort_small(t_stack *stack)
+{
+    /// the highest number at the first position
+	if (stack->head == stack->max)
+    {
+		ft_rotate_down(&stack->head);
+		printf("%d\n", stack->head->value);
+		if (stack->head->next == stack->min)
+			ft_swap(&stack->head);
+		// 3 1 2
+		// 3 2 1
+    }
+	// the lowest number at the first position
+	else if (stack->head == stack->min)
+	{
+		if (stack->head->next < stack->head->previous)
+		{
+			ft_rotate_up(&stack->head);
+			ft_swap(&stack->head);
+		}
+	}
+	// the second highest number is at the first position
+	else
+	{
+		if (stack->head->next == stack->max)
+			ft_rotate_up(&stack->head);
+		else if (stack->head->next == stack->min)
+			ft_swap(&stack->head);
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -300,7 +320,7 @@ int	main(int argc, char **argv)
 
 	// list = NULL;
 	ft_bzero(&stack_a,sizeof(t_stack));
-	i = 1;	
+	i = 1;
 	while (i < argc)
 	{
 		ft_add_list_back(&stack_a, ft_atoi(argv[i]));
@@ -317,14 +337,14 @@ int	main(int argc, char **argv)
 	printf("the maximum value of nodes: %d\n", stack_a.max->value);
 	printf("the minimum value of nodes: %d\n", stack_a.min->value);
 	/// check sort take head && min
+	printf("%d\n", ft_is_sort(stack_a.head));
 	if (ft_is_sort(stack_a.head) == 0)
 		return (0);
 	if (stack_a.n == 3)
 	{
-		ft_sort_small(stack_a.head);
+		ft_sort_small(&stack_a);
 	}
-	printf("%d\n", ft_is_sort(stack_a.head));
-	
+	ft_print_output(stack_a.head);
 }
 	///////// The algorithm to rotate the stack && extract the node///////
 	// printf("the refer of main %p\n", &list);
