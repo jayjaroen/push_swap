@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 22:08:45 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/05 22:29:47 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/06 23:58:06 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,12 +202,13 @@ t_node	*ft_extract_node(t_node **list) //extract node - set to null/ 1 node / 2 
 		return (extract);
 	}
 	// more than two nodes
-	extract->next->previous = extract->previous;
+	// extract->next->previous = extract->previous;
+	extract->next->previous = extract->next; /// updating the list
 	extract->previous->next = extract->next;
 	*list = extract->next;
 	return (extract);
 }
-
+// ------------- add node after extract ----------------------------
 void	ft_add_node(t_node **list, t_node *new)
 {
 	t_node	*head;
@@ -218,6 +219,7 @@ void	ft_add_node(t_node **list, t_node *new)
 		head = new;
 		head->next = NULL;
 		head->previous = NULL;
+		*list = new;
 	}
 	/// if one node in the list
 	else if (head->next == NULL)
@@ -310,16 +312,31 @@ void	ft_sort_small(t_stack *stack)
 			ft_swap(&stack->head);
 	}
 }
+/////////////////// update info function ////////////////
+void	ft_update_info(t_stack *stack, t_node *extract)
+{
+///// to update info number of node, min & max
+}
+////////////////// function push a to b///////////////////
+void    ft_push(t_stack *stack_out, t_stack *stack_in)
+{
+	//// also need to update min max after push, change the stack////
+	t_node	*extract;
+
+	extract = ft_extract_node(&stack_out->head);
+	// ft_update_info(stack_a, extract);
+	ft_add_node(&stack_in->head, extract);
+}
 
 int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
-	// t_node	*list;
+	t_stack	stack_b;
 	int i;
 	int	size_arg;
 
-	// list = NULL;
-	ft_bzero(&stack_a,sizeof(t_stack));
+	ft_bzero(&stack_a, sizeof(t_stack));
+	ft_bzero(&stack_b, sizeof(t_stack));
 	i = 1;
 	while (i < argc)
 	{
@@ -345,6 +362,11 @@ int	main(int argc, char **argv)
 		ft_sort_small(&stack_a);
 	}
 	ft_print_output(stack_a.head);
+	ft_push(&stack_a, &stack_b);
+	printf("------ stack a after push pa -------\n");
+	ft_print_output(stack_a.head);
+	printf("--------stack b after push pa--------\n");
+	ft_print_output(stack_b.head);
 }
 	///////// The algorithm to rotate the stack && extract the node///////
 	// printf("the refer of main %p\n", &list);
