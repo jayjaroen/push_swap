@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 22:08:45 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/06 23:58:06 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:43:36 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_add_list_back(t_stack *stack, int i)
 		stack->min = new;
 		stack->max = new;
 	}
-	else if (head->next == NULL)
+	else if (head->next == NULL) // only two node in the stack
 	{
 		new -> next = head;
 		new -> previous = head;
@@ -185,6 +185,7 @@ void	ft_swap(t_node **list)
 t_node	*ft_extract_node(t_node **list) //extract node - set to null/ 1 node / 2 node / 3 node --> change the pointer
 {
 	t_node	*extract;
+	
 	extract = *list;
 	if (!(extract))
 		return (NULL);
@@ -201,9 +202,8 @@ t_node	*ft_extract_node(t_node **list) //extract node - set to null/ 1 node / 2 
 		*list = extract->next;//change the head node
 		return (extract);
 	}
-	// more than two nodes
-	// extract->next->previous = extract->previous;
-	extract->next->previous = extract->next; /// updating the list
+	//more than two nodes
+	extract->next->previous = extract->previous;
 	extract->previous->next = extract->next;
 	*list = extract->next;
 	return (extract);
@@ -265,6 +265,7 @@ int	ft_count_node(t_node **list)
 	return (count);
 }
 
+// The following function is to see if the stack is sorted///
 int	ft_is_sort(t_node *head)
 {
 	t_node	*ptr;
@@ -328,12 +329,30 @@ void    ft_push(t_stack *stack_out, t_stack *stack_in)
 	ft_add_node(&stack_in->head, extract);
 }
 
+size_t	ft_find_position_b(t_stack *stack_b, int value)
+{
+	t_node	*ptr;
+	int		move;
+
+	ptr = stack_b->head;
+	move = 0;
+	while (1)
+	{
+		if ((ptr->value < value) && (value < ptr->previous->value))
+			break ;
+		move++;	
+		ptr = ptr->next;
+	}
+	return (move);	
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
 	int i;
 	int	size_arg;
+	int	stack_b_move;
 
 	ft_bzero(&stack_a, sizeof(t_stack));
 	ft_bzero(&stack_b, sizeof(t_stack));
@@ -363,6 +382,9 @@ int	main(int argc, char **argv)
 	}
 	ft_print_output(stack_a.head);
 	ft_push(&stack_a, &stack_b);
+	ft_push(&stack_a, &stack_b);
+	stack_b_move = ft_find_position_b(&stack_b, stack_a.head->value);
+	printf("the number of move for stack b: %d\n", stack_b_move);
 	printf("------ stack a after push pa -------\n");
 	ft_print_output(stack_a.head);
 	printf("--------stack b after push pa--------\n");
