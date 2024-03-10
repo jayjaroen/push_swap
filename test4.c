@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 22:08:45 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/09 16:43:36 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:35:08 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,7 @@
 
 void	ft_free_node(t_node **list);
 void	ft_bzero(void *s, size_t n);
-
-int	ft_atoi(const char *str)
-{
-	int	num;
-	int	sign;
-
-	sign = 1;
-	num = 0;
-	while ((*str >= 9 && *str <= 13) || *str == 32)
-		str++;
-	if (*str == 43 || *str == 45)
-	{
-		if (*str == 45)
-			sign = -1;
-		str++;
-	}
-	while (*str >= 48 && *str <= 57)
-	{
-		num = (num * 10) + (*str - 48);
-		str++;
-	}
-	return (sign * num);
-}
+int	ft_atoi(const char *str);
 
 // add min add max
 void	ft_add_list_back(t_stack *stack, int i)
@@ -88,7 +66,7 @@ void	ft_add_list_back(t_stack *stack, int i)
 		if (new->value < stack->min->value)
 			stack->min = new;
 	}
-	stack->n += 1; //size of stack every time adding the new node
+	// stack->n += 1; //size of stack every time adding the new node 
 }
 
 void	ft_free_node(t_node **list)
@@ -247,18 +225,18 @@ void	ft_add_node(t_node **list, t_node *new)
 
 // }
 
-int	ft_count_node(t_node **list)
+int	ft_count_node(t_node *list)
 {
 	t_node *ptr;
 	int		count;
 
 	count = 0;
-	ptr = *list;
+	ptr = list;
 	while (1)
 	{
 		ptr = ptr->next;
 		++count;
-		if (ptr == *list)
+		if (ptr == list)
 			break ;
 	}
 	printf("the number of nodes is: %d\n", count);
@@ -266,7 +244,7 @@ int	ft_count_node(t_node **list)
 }
 
 // The following function is to see if the stack is sorted///
-int	ft_is_sort(t_node *head)
+bool	ft_is_sorted(t_node *head)
 {
 	t_node	*ptr;
 
@@ -276,16 +254,21 @@ int	ft_is_sort(t_node *head)
 	while (ptr->next != head)
 	{
 		if (ptr->value >= ptr->next->value)
-			return (1);
+			return (false);
 		ptr = ptr->next;
 	}
-	return (0);
+	return (true);
 }
 
 /// The function handle only three elements in stack
 void	ft_sort_small(t_stack *stack)
 {
     /// the highest number at the first position
+	if (stack->n == 2)
+	{
+		ft_swap(&stack->head);
+		return ;
+	}
 	if (stack->head == stack->max)
     {
 		ft_rotate_down(&stack->head);
@@ -313,11 +296,7 @@ void	ft_sort_small(t_stack *stack)
 			ft_swap(&stack->head);
 	}
 }
-/////////////////// update info function ////////////////
-void	ft_update_info(t_stack *stack, t_node *extract)
-{
-///// to update info number of node, min & max
-}
+
 ////////////////// function push a to b///////////////////
 void    ft_push(t_stack *stack_out, t_stack *stack_in)
 {
@@ -329,21 +308,48 @@ void    ft_push(t_stack *stack_out, t_stack *stack_in)
 	ft_add_node(&stack_in->head, extract);
 }
 
-size_t	ft_find_position_b(t_stack *stack_b, int value)
-{
-	t_node	*ptr;
-	int		move;
+// size_t	ft_find_position_b(t_stack *stack_b, int value)
+// {
+// 	t_node	*ptr;
+// 	int		move;
 
-	ptr = stack_b->head;
-	move = 0;
-	while (1)
-	{
-		if ((ptr->value < value) && (value < ptr->previous->value))
-			break ;
-		move++;	
-		ptr = ptr->next;
-	}
-	return (move);	
+// 	ptr = stack_b->head;
+// 	move = 0;
+// 	while (1)
+// 	{
+// 		if ((ptr->value < value) && (value < ptr->previous->value))
+// 			break ;
+// 		move++;	
+// 		ptr = ptr->next;
+// 	}
+// 	return (move);	
+// }
+void	ft_find_index(t_node *list, t_data *data)
+{
+	
+}
+
+void	ft_sort_large(t_stack *stack_a, t_stack *stack_b)
+{
+	// the function is to sort the stack_a more than 3
+	// size of index
+	ft_push(stack_a, stack_b);
+	stack_a->n = ft_count_node(stack_a->head);
+	if (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
+		ft_push(stack_a, stack_b);
+}
+
+
+void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b)
+{
+	//before sort stack a --> need to prevent the error first
+	//create another function
+	if (ft_is_sorted(stack_a->head))
+		return ;
+	else if (stack_a->n <= 3) // 2 & 3
+		ft_sort_small(stack_a);
+	else if (stack_a->n > 3)
+		ft_sort_large(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
@@ -352,7 +358,6 @@ int	main(int argc, char **argv)
 	t_stack	stack_b;
 	int i;
 	int	size_arg;
-	int	stack_b_move;
 
 	ft_bzero(&stack_a, sizeof(t_stack));
 	ft_bzero(&stack_b, sizeof(t_stack));
@@ -368,26 +373,19 @@ int	main(int argc, char **argv)
 	// small sort -> algo (within the stack)
 	// ft_check_duplicate_num(&list);
 	// size_arg = ft_count_node(&list);
-	ft_print_output(stack_a.head); // the address of reference
-	printf("the total number of nodes: %zu\n", stack_a.n); //pointer using "->"
+	ft_sort_stack(&stack_a, &stack_b);
+	// ft_print_output(stack_a.head); // the address of reference
+	printf("the total number of nodes: %d\n", ft_count_node(stack_a.head)); //already a pointer	
 	printf("the maximum value of nodes: %d\n", stack_a.max->value);
 	printf("the minimum value of nodes: %d\n", stack_a.min->value);
 	/// check sort take head && min
-	printf("%d\n", ft_is_sort(stack_a.head));
-	if (ft_is_sort(stack_a.head) == 0)
-		return (0);
-	if (stack_a.n == 3)
-	{
-		ft_sort_small(&stack_a);
-	}
+	// printf("%d\n", ft_is_sorted(stack_a.head));
+
+	// ft_print_output(stack_a.head);
+	
+	printf("------ stack a after sorting -------\n");
 	ft_print_output(stack_a.head);
-	ft_push(&stack_a, &stack_b);
-	ft_push(&stack_a, &stack_b);
-	stack_b_move = ft_find_position_b(&stack_b, stack_a.head->value);
-	printf("the number of move for stack b: %d\n", stack_b_move);
-	printf("------ stack a after push pa -------\n");
-	ft_print_output(stack_a.head);
-	printf("--------stack b after push pa--------\n");
+	printf("--------stack b after sorting--------\n");
 	ft_print_output(stack_b.head);
 }
 	///////// The algorithm to rotate the stack && extract the node///////
@@ -401,6 +399,7 @@ int	main(int argc, char **argv)
 	// ft_add_node(&list, extract);//612345
 	// ft_print_output(list); // the address of reference
 	// ft_free_node(&list);
+
 void	ft_bzero(void *s, size_t n)
 {
 	size_t			i;
@@ -414,4 +413,27 @@ void	ft_bzero(void *s, size_t n)
 		ptr++;
 		i++;
 	}
+}
+
+int	ft_atoi(const char *str)
+{
+	int	num;
+	int	sign;
+
+	sign = 1;
+	num = 0;
+	while ((*str >= 9 && *str <= 13) || *str == 32)
+		str++;
+	if (*str == 43 || *str == 45)
+	{
+		if (*str == 45)
+			sign = -1;
+		str++;
+	}
+	while (*str >= 48 && *str <= 57)
+	{
+		num = (num * 10) + (*str - 48);
+		str++;
+	}
+	return (sign * num);
 }
