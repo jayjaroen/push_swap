@@ -6,13 +6,12 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 22:09:26 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/24 17:42:09 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/24 17:47:59 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "../libft/libft.h"
-#include <stdio.h> // TO BE DELETE later
+#include "../include/push_swap.h"
 
 // what this function is going to do
 // 1. Alpha or number
@@ -30,10 +29,10 @@ int	ft_is_valid(int argv)
 	/// negative and postive ///
 	if ((argv >= '0' && argv <= '9') || (argv == 32))
 	{
-		printf("the argument is valid\n");
+		ft_printf("the argument is valid\n");
 		return (0);
 	}
-	printf("the argument is not valid\n");
+	ft_printf("the argument is not valid\n");
 	return (1);
 }
 

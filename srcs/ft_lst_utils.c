@@ -6,11 +6,11 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:28:13 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/01 16:05:11 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/24 17:48:59 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 /*The fle contains the function that works work with circular double linked list
 */
 //extract node - set to null/ 1 node / 2 node / 3 node --> change the pointer
