@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 12:14:22 by jjaroens          #+#    #+#             */
-/*   Updated: 2023/10/14 12:40:18 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/24 11:31:14 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,18 @@
 // #include <string.h>
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s && *s != (char)c)
-		s++;
-	if (*s == (char)c || (!*s && (char)c == 0))
-		return ((char *)s);
-	else
+	unsigned char	i;
+	unsigned char	*str;
+
+	if (!s)
 		return (NULL);
+	i = (unsigned char)c;
+	str = (unsigned char *)s;
+	while (*str != '\0' && *str != i)
+		str++;
+	if (*str == i)
+		return ((char *)str);
+	return (NULL);
 }
 // int	main(void)
 // {

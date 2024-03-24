@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 10:15:18 by jjaroens          #+#    #+#             */
-/*   Updated: 2023/10/09 21:23:40 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/24 13:49:51 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# define HEX_UPPER "0123456789ABCDEF"
+# define HEX_LOWER "0123456789abcdef"
+# define BASE_10 "0123456789"
+
+/*----------Get_next_line------------------------------------*/
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 43
+# endif
 
 typedef struct s_list
 {
@@ -70,4 +79,19 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+/*----------------------ft_printf-----------------------------------*/
+void	ft_itoa_print(long i, int base, int *j, char *str);
+void	ft_printpointer(unsigned long num, int base, int *count, char *ptr);
+int		ft_printf(const char *args, ...);
+int		ft_putstr(char *str);
+int		ft_putchar(int c);
+int		ft_putstr(char *str);
+int		ft_putpointer(void *p);
+int		ft_putnum(int i);
+int		ft_puthex(unsigned int i, char c);
+int		ft_putunsigned(unsigned int c);
+
+/*-----------------------get_next_line--------------------------------*/
+char	*get_next_line(int fd);
 #endif

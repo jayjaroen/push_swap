@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 12:15:44 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/01 16:31:17 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/24 13:53:38 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ The strcmp() and strncmp() functions return an integer greater than,
 		The comparison is done using **unsigned characters**, 
 		so that `\200' is greater than `\0'.
 */
+// #include <stdio.h>
+// #include <string.h>
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
-	i = 0;
+	i = 1;
 	if (n == 0)
 		return (0);
 	while (*s1 == *s2 && *s1 && i < n)

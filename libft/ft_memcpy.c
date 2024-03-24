@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 12:12:19 by jjaroens          #+#    #+#             */
-/*   Updated: 2023/10/18 22:09:35 by jjaroens         ###   ########.fr       */
+/*   Updated: 2023/10/13 15:12:54 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	d = (unsigned char *)dst;
 	s = (unsigned char *)src;
 	i = 0;
-	if (d > s)
-	{
-		ft_memmove(d, s, n);
-		return (dst);
-	}
 	while (i < n)
 	{
 		d[i] = s[i];

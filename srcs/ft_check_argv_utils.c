@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 22:09:26 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/02 16:30:31 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/24 17:42:09 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,29 +61,29 @@ int    ft_check_argv(int argc, char **argv)
 	return (result);
 }
 // testing the function ////
-int	main(int argc, char **argv)
-{
-    int	result;
-	char **ptr;
-	int	i;
+// int	main(int argc, char **argv)
+// {
+//     int	result;
+// 	char **ptr;
+// 	int	i;
 
-	i = 0;
-	result = ft_check_argv(argc,argv);
-	if (result == 1)
-	{
-		printf("Error"); //error function
-		return (1);
-	}
-	if (argc == 2)
-	{
-		ptr = ft_split(argv[1],' '); //ptr to free later
-		while (ptr[i])
-		{
-			printf("the argument is %s\n", ptr[i]);
-			i++;
-		}
-	} // then split the word
-}
+// 	i = 0;
+// 	result = ft_check_argv(argc,argv);
+// 	if (result == 1)
+// 	{
+// 		printf("Error"); //error function
+// 		return (1);
+// 	}
+// 	if (argc == 2)
+// 	{
+// 		ptr = ft_split(argv[1],' '); //ptr to free later
+// 		while (ptr[i])
+// 		{
+// 			printf("the argument is %s\n", ptr[i]);
+// 			i++;
+// 		}
+// 	} // then split the word
+// }
 
 // over flow int --> atoi // handle 
 // duplicate

@@ -6,17 +6,17 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/10 17:20:07 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/24 17:41:21 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <unistd.h> //write
-# include <stdlib.h>
+// # include <unistd.h> //write
+// # include <stdlib.h>
 # include <stdbool.h>
-# include "../libft/libft.h"
+# include "libft.h"
 
 typedef struct s_node
 {
@@ -62,7 +62,8 @@ void	ft_push(t_stack *stack_out, t_stack *stack_in);
 // functions to create a list
 void	ft_print_output(t_node *list);
 void	ft_free_node(t_node **list);
-void	ft_add_list_back(t_stack *list, int i);
+// void	ft_add_list_back(t_stack *list, int i);
+void	ft_add_list_back(t_node **list, int i);
 t_node	*ft_extract_node(t_node **list);
 
 // functions to check agruments

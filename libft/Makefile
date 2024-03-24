@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+         #
+#    By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 12:17:14 by jjaroens          #+#    #+#              #
-#    Updated: 2023/10/08 12:17:17 by jjaroens         ###   ########.fr        #
+#    Updated: 2024/03/24 11:43:22 by jjaroens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRCS = 	ft_isalpha.c \
 		ft_strlen.c \
 		ft_memset.c \
 		ft_bzero.c \
-		ft_memcpy.c \
 		ft_memcpy.c \
 		ft_memmove.c \
 		ft_strlcpy.c \
@@ -47,36 +46,40 @@ SRCS = 	ft_isalpha.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
+		ft_lstnew.c \
+		ft_lstadd_front.c \
+		ft_lstsize.c \
+		ft_lstlast.c \
+		ft_lstadd_back.c \
+		ft_lstdelone.c \
+		ft_lstclear.c \
+		ft_lstiter.c \
+		ft_lstmap.c \
+		
+SRCS_Printf = ft_printf.c ft_put_format.c ft_put_utils.c
 
-BONUS_SRCS = ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c \
+SRCS_Get = get_next_line.c
 
-OBJECTS = $(SRCS:.c=.o)
+SRCS += ${SRCS_Printf}
 
-BONUS_OBJECTS = ${BONUS_SRCS:.c=.o}
+SRCS += ${SRCS_Get}
+
+HEADER = libft.h
+
+OBJECTS = $(SRCS:.c=.o) 
 
 CFLAGS = -Wall -Wextra -Werror
 
 all: ${NAME}
 
-.c.o:
-	cc ${CFLAGS} -c $< -o $(<:.c=.o)
+$(OBJECTS): %.o: %.c ${HEADER} Makefile
+	cc ${CFLAGS} -c $< -o $@
 
 $(NAME): $(OBJECTS)
 	ar -rc ${NAME} ${OBJECTS}
 
-bonus: ${OBJECTS} ${BONUS_OBJECTS}
-	ar -rc ${NAME} ${OBJECTS} ${BONUS_OBJECTS}
-
 clean:
-	/bin/rm -f $(OBJECTS) ${BONUS_OBJECTS}
+	/bin/rm -f $(OBJECTS)
 
 fclean: clean
 	/bin/rm -f $(NAME)
