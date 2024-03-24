@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:28:13 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/24 17:48:59 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:14:22 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_add_node(t_node **list, t_node *new)
 	}
 }
 //what is the difference between this function and above?
-void	ft_add_list_back(t_node **list, int i)
+void	ft_add_list_back_node(t_node **list, int i)
 {
 	t_node	*new;
 	t_node 	*head;
