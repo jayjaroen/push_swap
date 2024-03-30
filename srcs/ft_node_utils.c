@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_utils.c                                     :+:      :+:    :+:   */
+/*   ft_node_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:28:13 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/24 18:14:22 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/30 16:28:13 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 /*The fle contains the function that works work with circular double linked list
 */
 //extract node - set to null/ 1 node / 2 node / 3 node --> change the pointer
-#include <stdio.h> /// TO BE DELETED !!!
 t_node	*ft_extract_node(t_node **list)
 {
 	t_node	*extract;
@@ -131,27 +130,20 @@ void	ft_free_node(t_node **list)
 	}
 }
 
-void	ft_print_output(t_node *list)
+int	ft_count_node(t_node *list)
 {
-	t_node	*head;
+	t_node *ptr;
+	int		count;
 
-	if (!list)
-		return ;
-	head = list;
-	printf("the address of ptr: %p\n", head);
-	printf("the address of ptr -> next: %p\n", head->next);
-	printf("the refer of function: %p\n", &list);
+	count = 0;
+	ptr = list;
 	while (1)
 	{
-		// if (list)
-		// {
-		// 	printf("%d\n", list -> value);
-		// 	list = list -> next;
-		printf("addr: %p,  %d\n", list, list->value);
-		if (!list->next)
+		ptr = ptr->next;
+		++count;
+		if (ptr == list)
 			break ;
-		list = list->next;
-		if (list == head)
-			break;
 	}
+	ft_printf("the number of nodes is: %d\n", count);
+	return (count);
 }

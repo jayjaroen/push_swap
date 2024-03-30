@@ -6,14 +6,15 @@
 #    By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/01 14:56:58 by jjaroens          #+#    #+#              #
-#    Updated: 2024/03/24 17:36:57 by jjaroens         ###   ########.fr        #
+#    Updated: 2024/03/30 16:30:04 by jjaroens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS = srcs/main.c srcs/push_swap.c srcs/ft_lst_algo.c srcs/ft_lst_utils.c \
-		srcs/ft_check_argv_utils.c 
+SRCS = srcs/main.c srcs/push_swap.c srcs/ft_operations.c srcs/ft_node_utils.c \
+		srcs/ft_check_argv_utils.c srcs/ft_sorting_stack.c \
+		srcs/ft_stack_utils.c srcs/ft_print_output.c
 
 LIBFT = ./libft/libft.a
 

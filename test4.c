@@ -6,14 +6,15 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 22:08:45 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/10 16:35:08 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/30 15:23:40 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "srcs/push_swap.h"
+#include "include/push_swap.h"
+#include "include/libft.h"
 
 void	ft_free_node(t_node **list);
 void	ft_bzero(void *s, size_t n);
@@ -66,7 +67,7 @@ void	ft_add_list_back(t_stack *stack, int i)
 		if (new->value < stack->min->value)
 			stack->min = new;
 	}
-	// stack->n += 1; //size of stack every time adding the new node 
+	stack->n += 1; //size of stack every time adding the new node 
 }
 
 void	ft_free_node(t_node **list)
@@ -261,6 +262,7 @@ bool	ft_is_sorted(t_node *head)
 }
 
 /// The function handle only three elements in stack
+// rewrite this function
 void	ft_sort_small(t_stack *stack)
 {
     /// the highest number at the first position
@@ -298,14 +300,15 @@ void	ft_sort_small(t_stack *stack)
 }
 
 ////////////////// function push a to b///////////////////
-void    ft_push(t_stack *stack_out, t_stack *stack_in)
+void    ft_push(t_node **stack_out, t_node **stack_in)
 {
 	//// also need to update min max after push, change the stack////
 	t_node	*extract;
 
-	extract = ft_extract_node(&stack_out->head);
+	extract = ft_extract_node(stack_out);
 	// ft_update_info(stack_a, extract);
-	ft_add_node(&stack_in->head, extract);
+	ft_add_node(stack_in, extract);
+	printf("hi there");
 }
 
 // size_t	ft_find_position_b(t_stack *stack_b, int value)
@@ -324,19 +327,23 @@ void    ft_push(t_stack *stack_out, t_stack *stack_in)
 // 	}
 // 	return (move);	
 // }
-void	ft_find_index(t_node *list, t_data *data)
-{
+// void	ft_find_index(t_node *list)
+// {
 	
-}
+// }
 
 void	ft_sort_large(t_stack *stack_a, t_stack *stack_b)
 {
 	// the function is to sort the stack_a more than 3
 	// size of index
-	ft_push(stack_a, stack_b);
-	stack_a->n = ft_count_node(stack_a->head);
-	if (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
-		ft_push(stack_a, stack_b);
+	int	length_a;
+
+	length_a = ft_count_node(stack_a->head);
+	printf("am I here?");
+	if (length_a > 3 && !ft_is_sorted(stack_a->head))
+		ft_push(&stack_a->head, &stack_b->head);
+	if (length_a > 3 && !ft_is_sorted(stack_a->head))
+		ft_push(&stack_a->head, &stack_b->head);
 }
 
 

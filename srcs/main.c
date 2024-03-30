@@ -6,11 +6,12 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/24 18:19:10 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/30 16:25:02 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+#include "../include/libft.h"
 
 /*The main function - Blue Print:
 	1. Receive the arguments
@@ -27,7 +28,44 @@
 	6. Sorting stack A (3 arguments -> tiny sort || more than 3):
 		6.1 push to stack B
 		6.2 the minimum steps to push A & b  */
+int	main(int argc, char **argv)
+{
+	t_stack	stack_a;
+	t_stack	stack_b;
+	int i;
 
+	ft_bzero(&stack_a, sizeof(t_stack));
+	ft_bzero(&stack_b, sizeof(t_stack));
+	i = 1;
+	while (i < argc)
+	{
+		ft_add_list_back(&stack_a, ft_atoi(argv[i]));
+		i++;
+	}
+	// check duplicate number
+	// if duplicate, exit out
+	// count size
+	// small sort -> algo (within the stack)
+	// ft_check_duplicate_num(&list);
+	// size_arg = ft_count_node(&list);
+	ft_sort_stack(&stack_a, &stack_b);
+	// ft_print_output(stack_a.head); // the address of reference
+	// ft_printf("the total number of nodes: %d\n", ft_count_node(stack_a.head)); //already a pointer	
+	// ft_printf("the maximum value of nodes: %d\n", stack_a.max->value);
+	// ft_printf("the minimum value of nodes: %d\n", stack_a.min->value);
+	/// check sort take head && min
+	// printf("%d\n", ft_is_sorted(stack_a.head));
+
+	// ft_print_output(stack_a.head);
+	
+	ft_printf("------ stack a after sorting -------\n");
+	ft_print_output(stack_a.head);
+	ft_printf("--------stack b after sorting--------\n");
+	ft_print_output(stack_b.head);
+}
+
+
+///////////////////////////////Parking lot /////////////////////////////////////////////////////////
 // int	main(int argc, char **argv)
 // {
 // 	/// to include organize the file ft_count_node and all functions in the main

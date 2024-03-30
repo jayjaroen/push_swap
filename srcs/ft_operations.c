@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_algo.c                                      :+:      :+:    :+:   */
+/*   ft_operations.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:32:25 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/24 17:48:52 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/30 17:26:10 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 /* This file contains functions that move the element within the stack*/
 //the first element become last one (ra, rb)
-void	ft_rotate(t_node **list)
+
+void	ft_rotate(t_node **list) //the first element become last one
 {
 	if (!(*list) || (*list)->next == NULL)
 		return ;
 	*list = (*list)->previous;
 }
+
 //the last element become the first one (rra, rrb)
 void	ft_rotate_reverse(t_node **list)
 {
@@ -27,6 +29,7 @@ void	ft_rotate_reverse(t_node **list)
 		return ;
 	*list = (*list)->next;
 }
+
 // swap the position between the first top two elements
 // sa, sb
 void	ft_swap(t_node **list)
@@ -55,4 +58,19 @@ void	ft_swap(t_node **list)
 	// a->next = b->next;
 	// b->previous = a->previous;
 	// b->previous->next = b;
+}
+
+void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
+{
+	//// also need to update min max after push, change the stack////
+	t_node	*extract;
+
+	extract = ft_extract_node(&stack_out->head);
+	// ft_update_info(stack_a, extract);
+	ft_add_node(&stack_in->head, extract);
+	stack_in->head = extract;
+	stack_out->n -= 1;
+	stack_in->n += 1;
+	ft_printf("p%c\n", out);
+	ft_printf("hi there head_b: %p, \n", stack_in->head);
 }
