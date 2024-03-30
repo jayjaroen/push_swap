@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:32:25 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/30 17:26:10 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/30 17:32:18 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
 	stack_in->head = extract;
 	stack_out->n -= 1;
 	stack_in->n += 1;
+	//setting min && max
 	ft_printf("p%c\n", out);
 	ft_printf("hi there head_b: %p, \n", stack_in->head);
 }
