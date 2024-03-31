@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+         #
+#    By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/01 14:56:58 by jjaroens          #+#    #+#              #
-#    Updated: 2024/03/30 16:30:04 by jjaroens         ###   ########.fr        #
+#    Updated: 2024/03/31 22:49:21 by jjaroens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 SRCS = srcs/main.c srcs/push_swap.c srcs/ft_operations.c srcs/ft_node_utils.c \
 		srcs/ft_check_argv_utils.c srcs/ft_sorting_stack.c \
-		srcs/ft_stack_utils.c srcs/ft_print_output.c
+		srcs/ft_stack_utils.c srcs/ft_print_output.c srcs/ft_finding_utils.c
 
 LIBFT = ./libft/libft.a
 
@@ -35,7 +35,7 @@ $(OBJS): %.o: %.c $(HEADER)
 
 $(LIBFT):
 	make -C ./libft
-	
+
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -I$(INCLUDE) $(OBJS) $(LIBFT) -o $(NAME)
 

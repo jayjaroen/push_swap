@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/30 17:13:51 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/31 22:47:57 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // # include <unistd.h> //write
 // # include <stdlib.h>
 # include <stdbool.h>
-# include <limits.h> 
+# include <limits.h>
 # include "libft.h"
 
 typedef struct s_node
@@ -24,8 +24,6 @@ typedef struct s_node
 	int				value;
 	struct s_node	*next;
 	struct s_node	*previous;
- 
-	
 } t_node;
 
 typedef struct s_stack
@@ -34,7 +32,7 @@ typedef struct s_stack
 	t_node	*max;
 	t_node	*min;
 	size_t	n;//stack size of a && b
-	
+
 } t_stack;
 
 // typedef	struct s_data //stack A && stack B each has t_data
@@ -82,8 +80,9 @@ void	ft_sort_small(t_stack *stack);
 //Node Utility functions
 int	ft_count_node(t_node *list);
 bool	ft_is_sorted(t_node *head);
+t_node    *ft_finding_max(t_node **head);
 
-//Stack Utility 
+//Stack Utility
 void	ft_add_list_back(t_stack *stack, int i);
 
 #endif

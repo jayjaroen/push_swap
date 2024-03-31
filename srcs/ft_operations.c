@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_operations.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:32:25 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/30 17:32:18 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/03/31 22:47:21 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
 	stack_in->head = extract;
 	stack_out->n -= 1;
 	stack_in->n += 1;
-	//setting min && max
+	//setting min && max // update max and min every time after each operation
+    if (extract->value == stack_out->max->value)
+        stack_out->max = ft_finding_max(&stack_out->head);
 	ft_printf("p%c\n", out);
 	ft_printf("hi there head_b: %p, \n", stack_in->head);
 }
