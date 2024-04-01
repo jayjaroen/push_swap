@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 21:50:44 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/31 22:59:15 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/01 21:51:05 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,34 @@ t_node    *ft_finding_max(t_node **head)
     t_node  *max;
 	t_node *current;
 
-    ft_printf("hi there");
-	max = *head;
 	current = *head;
+	max = current;
 	while (1)
 	{
-		if (current->value < current->previous->value)
-			max = current->previous;
+		if (current->next->value > max->value)
+			max = current->next;
 		current = current->next;
 		if (current == *head)
 			break ;
 	}
-	ft_printf("the max node is %d\n", max->value);
 	return (max);
+}
+
+t_node  *ft_finding_min(t_node **head)
+{
+    t_node  *min;
+	t_node	*current;
+
+	min = *head;
+	current = *head;
+
+	while (1)
+	{
+		if (current->next->value < min->value)
+			min = current->next;
+		current = current->next;
+		if (current == *head)
+			break ;
+	}
+	return (min);
 }

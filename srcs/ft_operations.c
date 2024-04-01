@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:32:25 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/31 22:47:21 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/01 22:19:12 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,15 @@ void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
 	//setting min && max // update max and min every time after each operation
     if (extract->value == stack_out->max->value)
         stack_out->max = ft_finding_max(&stack_out->head);
+    else if (extract->value == stack_out->min->value)
+        stack_out->min = ft_finding_min(&stack_out->head);
+    // if (extract->value > stack_in->max->value)
+    // {
+    //     ft_printf("I'm ft_push, updating max min");
+    //     stack_in->max = extract;
+    // }
+    // else if (extract->value < stack_in->min->value)
+    //     stack_in->min = extract;
 	ft_printf("p%c\n", out);
 	ft_printf("hi there head_b: %p, \n", stack_in->head);
 }

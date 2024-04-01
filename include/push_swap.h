@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/31 22:47:57 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/01 20:40:00 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	ft_sort_small(t_stack *stack);
 int	ft_count_node(t_node *list);
 bool	ft_is_sorted(t_node *head);
 t_node    *ft_finding_max(t_node **head);
+t_node  *ft_finding_min(t_node **head);
 
 //Stack Utility
 void	ft_add_list_back(t_stack *stack, int i);

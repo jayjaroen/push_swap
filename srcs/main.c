@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/30 16:25:02 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/01 22:28:58 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,20 @@ int	main(int argc, char **argv)
 	// size_arg = ft_count_node(&list);
 	ft_sort_stack(&stack_a, &stack_b);
 	// ft_print_output(stack_a.head); // the address of reference
-	// ft_printf("the total number of nodes: %d\n", ft_count_node(stack_a.head)); //already a pointer	
+	// ft_printf("the total number of nodes: %d\n", ft_count_node(stack_a.head)); //already a pointer
 	// ft_printf("the maximum value of nodes: %d\n", stack_a.max->value);
 	// ft_printf("the minimum value of nodes: %d\n", stack_a.min->value);
 	/// check sort take head && min
 	// printf("%d\n", ft_is_sorted(stack_a.head));
 
 	// ft_print_output(stack_a.head);
-	
+
 	ft_printf("------ stack a after sorting -------\n");
 	ft_print_output(stack_a.head);
 	ft_printf("--------stack b after sorting--------\n");
 	ft_print_output(stack_b.head);
+    /// haven't set the max && min fo the stack_b (do we need to care about max && min)
+    // ft_printf("max node_b:%d\n", stack_b.max->value);
 }
 
 
@@ -69,7 +71,7 @@ int	main(int argc, char **argv)
 // int	main(int argc, char **argv)
 // {
 // 	/// to include organize the file ft_count_node and all functions in the main
-// 	/// in utility 
+// 	/// in utility
 // 	t_stack	stack_a;
 // 	t_stack	stack_b;
 // 	int i;
@@ -90,14 +92,14 @@ int	main(int argc, char **argv)
 // 	// size_arg = ft_count_node(&list);
 // 	ft_sort_stack(&stack_a, &stack_b);
 // 	// ft_print_output(stack_a.head); // the address of reference
-// 	ft_printf("the total number of nodes: %d\n", ft_count_node(stack_a.head)); //already a pointer	
+// 	ft_printf("the total number of nodes: %d\n", ft_count_node(stack_a.head)); //already a pointer
 // 	ft_printf("the maximum value of nodes: %d\n", stack_a.max->value);
 // 	ft_printf("the minimum value of nodes: %d\n", stack_a.min->value);
 // 	/// check sort take head && min
 // 	// printf("%d\n", ft_is_sorted(stack_a.head));
 
 // 	// ft_print_output(stack_a.head);
-	
+
 // 	ft_printf("------ stack a after sorting -------\n");
 // 	ft_print_output(stack_a.head);
 // 	ft_printf("--------stack b after sorting--------\n");
@@ -109,7 +111,7 @@ int	main(int argc, char **argv)
 // 	// char	*ptr;
 // 	int		result;
 // 	// int		i;
-	
+
 // 	// list_a = NULL;
 // 	if (argc < 2 || !argv[1][0])
 // 		return (1);
@@ -122,14 +124,14 @@ int	main(int argc, char **argv)
 // 	// if (argc == 2)
 // 	// {
 // 	// 	ptr = ft_split(argv[1], ' ');
-			
+
 // 	// }
 // 	// else if (argc > 2)
 // 	// {
-		
+
 // 	// }
-	
+
 // 	// list_a = NULL;
-    
+
 // 	// function to check the argv //
 // }

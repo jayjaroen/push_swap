@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sorting_stack.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 13:18:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/30 17:15:48 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/01 22:17:18 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,19 @@ void	ft_sort_small(t_stack *stack)
 
 void	ft_sort_large(t_stack *stack_a, t_stack *stack_b)
 {
-	// the function is to sort the stack_a more than 3
-	// size of index
-	// int	length_a;
-
-	// length_a = ft_count_node(stack_a->head);
-	ft_printf("am I here?");
+	ft_printf("I am a ft_sort_large!!\n");
 	if (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
+    {
 		ft_push(stack_a, stack_b, 'b');
+        // stack_b->min = ft_finding_min(&stack_b->head);
+        // stack_b->max = ft_finding_max(&stack_b->head);
+    }
 	if (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
+    {
 		ft_push(stack_a, stack_b, 'b');
+        // stack_b->min = ft_finding_min(&stack_b->head);
+        // stack_b->max = ft_finding_max(&stack_b->head);
+    }
 }
 
 
@@ -76,6 +79,7 @@ void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b)
 		ft_sort_small(stack_a);
 	else if (stack_a->n > 3)
 		ft_sort_large(stack_a, stack_b);
+    ft_printf("am i back here yet");
 }
 
 // The following function is to see if the stack is sorted///
