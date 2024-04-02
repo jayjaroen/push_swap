@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/01 20:40:00 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/02 22:37:01 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,20 @@
 typedef struct s_node
 {
 	int				value;
+    int             index;
+    int             cost;
+    bool            above_median;
+    struct s_node   *target_node;
 	struct s_node	*next;
 	struct s_node	*previous;
 } t_node;
 
 typedef struct s_stack
 {
-	t_node	*head;
+	t_node	*head;//the top node
 	t_node	*max;
 	t_node	*min;
 	size_t	n;//stack size of a && b
-
 } t_stack;
 
 // typedef	struct s_data //stack A && stack B each has t_data
@@ -85,5 +88,9 @@ t_node  *ft_finding_min(t_node **head);
 
 //Stack Utility
 void	ft_add_list_back(t_stack *stack, int i);
+
+//stack initiation utility
+void	ft_init_stack_a(t_stack *stack_a);
+void	ft_find_index(t_node **head);
 
 #endif

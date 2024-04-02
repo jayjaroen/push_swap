@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 13:18:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/01 22:17:18 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/02 22:37:21 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,12 @@ void	ft_sort_large(t_stack *stack_a, t_stack *stack_b)
 {
 	ft_printf("I am a ft_sort_large!!\n");
 	if (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
-    {
 		ft_push(stack_a, stack_b, 'b');
-        // stack_b->min = ft_finding_min(&stack_b->head);
-        // stack_b->max = ft_finding_max(&stack_b->head);
-    }
 	if (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
-    {
 		ft_push(stack_a, stack_b, 'b');
-        // stack_b->min = ft_finding_min(&stack_b->head);
-        // stack_b->max = ft_finding_max(&stack_b->head);
+    while (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
+    {
+        ft_init_stack_a(stack_a);
     }
 }
 
