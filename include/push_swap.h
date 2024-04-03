@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/02 22:37:01 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:51:12 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ t_node  *ft_finding_min(t_node **head);
 void	ft_add_list_back(t_stack *stack, int i);
 
 //stack initiation utility
-void	ft_init_stack_a(t_stack *stack_a);
+void	ft_init_stack_a(t_stack *stack_a, t_stack *stack_b);
 void	ft_find_index(t_node **head);
+void	ft_set_target_a(t_node **a, t_node **b);
 
 #endif

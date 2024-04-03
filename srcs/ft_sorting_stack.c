@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 13:18:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/02 22:37:21 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:58:40 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,11 @@ void	ft_sort_large(t_stack *stack_a, t_stack *stack_b)
 		ft_push(stack_a, stack_b, 'b');
     while (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
     {
-        ft_init_stack_a(stack_a);
+        ft_printf("about to start to initialize stack a\n");
+        ft_init_stack_a(stack_a, stack_b);
+        break ;
     }
 }
-
 
 void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b)
 {

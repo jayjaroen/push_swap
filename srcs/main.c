@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/01 22:28:58 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:57:08 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
+    // t_node *current;
 	int i;
 
 	ft_bzero(&stack_a, sizeof(t_stack));
@@ -64,6 +65,16 @@ int	main(int argc, char **argv)
 	ft_print_output(stack_b.head);
     /// haven't set the max && min fo the stack_b (do we need to care about max && min)
     // ft_printf("max node_b:%d\n", stack_b.max->value);
+    // current = stack_a.head;
+    // while (1)
+    // {
+    //     ft_printf("the index of the node: %d,  %d\n", current->value, current->index);
+	// 	if (!current->next)
+	// 		break ;
+	// 	current = current->next;
+	// 	if (current == stack_a.head)
+	// 		break;
+    // }
 }
 
 
