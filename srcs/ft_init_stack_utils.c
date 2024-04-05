@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 22:10:59 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/03 22:53:04 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:15:27 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,34 @@ void	ft_set_target_a(t_node **a, t_node **b)
 
 	current_a = *a;
 	current_a->previous->next = NULL;
-	while (current_a != NULL)
+    ft_printf("I am inside of the init stack function!\n");
+	while (current_a)
 	{
 		best_match = LONG_MIN;
 		current_b = *b;
+        target_b = NULL;
 		current_b->previous->next = NULL;
+        ft_printf("the number of current is: %d\n", current_a->value);
 		while (current_b)
 		{
-			if (current_b->value > current_a->value && //should be bigger
-			current_b->value > best_match)
+            ft_printf("inside the b loop\n");
+			if ((current_b->value < current_a->value) &&
+			(current_b->value > best_match))
 			{
 				best_match = current_b->value;
 				target_b = current_b;
 			}
 			current_b = current_b->next;
+            // if (current_b == *b)
+            //     break ;
 		}
+        ft_printf("am I here?\n");
 		if (best_match == LONG_MIN)
-			current_a->target_node = ft_finding_min(b);
+			current_a->target_node = ft_finding_max(b);
 		else
 			current_a->target_node = target_b;
 		current_a = current_a->next;
+        ft_printf("hi there\n");
+        // ft_printf("the target of A node in B is:%d\n", current_a->target_node);
 	}
 }
