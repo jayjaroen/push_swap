@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 22:10:59 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/06 14:34:55 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/06 15:04:05 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,20 @@ void	ft_set_target_a(t_stack *a, t_stack *b)
 		ft_printf("target node of A is: %d\n", current_a->target_node->value);
 		current_a = current_a->next;
 		ft_printf("hi there\n");
+	}
+}
+
+void	ft_cost_analysis_a(t_stack *a, t_stack *b)
+{
+	size_t	index;
+	t_node	*current_a;
+	t_node	*current_b;
+
+	index = -1;
+	current_a = a->head;
+	current_b = b->head;
+	while (++index < a->n)
+	{
+		
 	}
 }

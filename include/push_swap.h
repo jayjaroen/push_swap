@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/06 13:41:55 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/06 15:03:10 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_node
 {
 	int				value;
     size_t			index;
-    int             cost;
+    size_t          cost;
     bool            above_median;
     struct s_node   *target_node;
 	struct s_node	*next;
