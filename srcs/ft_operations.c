@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_operations.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:32:25 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/01 22:19:12 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/06 13:45:43 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,24 @@ void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
 	ft_add_node(&stack_in->head, extract);
 	stack_in->head = extract;
 	stack_out->n -= 1;
+	if (stack_in->n == 0)
+	{
+		stack_in->min = extract;
+		stack_in->max = extract;
+	}
+	else
+	{
+		if (stack_in->min->value > extract->value)
+			stack_in->min = extract;
+		if (stack_in->max->value < extract->value)
+			stack_in->max = extract;
+	}
 	stack_in->n += 1;
 	//setting min && max // update max and min every time after each operation
-    if (extract->value == stack_out->max->value)
-        stack_out->max = ft_finding_max(&stack_out->head);
-    else if (extract->value == stack_out->min->value)
-        stack_out->min = ft_finding_min(&stack_out->head);
-    // if (extract->value > stack_in->max->value)
-    // {
-    //     ft_printf("I'm ft_push, updating max min");
-    //     stack_in->max = extract;
-    // }
-    // else if (extract->value < stack_in->min->value)
-    //     stack_in->min = extract;
+	if (extract->value == stack_out->max->value)
+		stack_out->max = ft_finding_max(&stack_out->head);
+    if (extract->value == stack_out->min->value)
+		stack_out->min = ft_finding_min(&stack_out->head);
 	ft_printf("p%c\n", out);
-	ft_printf("hi there head_b: %p, \n", stack_in->head);
+	// ft_printf("hi there head_b: %p\n", stack_in->head);
 }

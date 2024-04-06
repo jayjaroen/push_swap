@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_stack_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 22:10:59 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/05 22:15:27 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:15:29 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 void	ft_find_index(t_node **head)
 {
 	t_node	*current;
-	int		i;
-	int		median;
+	size_t	i;
+	size_t	median;
 
 	// if (!head)
 	// 	return ;
@@ -26,7 +26,6 @@ void	ft_find_index(t_node **head)
 	median = ft_count_node(*head)/2;
 	while (1)
 	{
-        ft_printf("I am inside the loop of ft_index\n");
 		current->index = i;
 		if (current->index <= median)
 			current->above_median = true;
@@ -39,24 +38,23 @@ void	ft_find_index(t_node **head)
 	}
 }
 
-void	ft_set_target_a(t_node **a, t_node **b)
+void	ft_set_target_a(t_stack *a, t_stack *b)
 {
 	t_node	*current_a;
 	t_node	*current_b;
 	t_node	*target_b;
 	long	best_match;
 
-	current_a = *a;
-	current_a->previous->next = NULL;
+	current_a = a->head;
     ft_printf("I am inside of the init stack function!\n");
-	while (current_a)
+	while (current_a->index <= (a->n)-1)
 	{
 		best_match = LONG_MIN;
-		current_b = *b;
+		current_b = b->head;
         target_b = NULL;
-		current_b->previous->next = NULL;
+		// current_b->previous->next = NULL;
         ft_printf("the number of current is: %d\n", current_a->value);
-		while (current_b)
+		while (current_b->index <= (b->n)-1)
 		{
             ft_printf("inside the b loop\n");
 			if ((current_b->value < current_a->value) &&
@@ -66,16 +64,19 @@ void	ft_set_target_a(t_node **a, t_node **b)
 				target_b = current_b;
 			}
 			current_b = current_b->next;
-            // if (current_b == *b)
-            //     break ;
 		}
         ft_printf("am I here?\n");
 		if (best_match == LONG_MIN)
-			current_a->target_node = ft_finding_max(b);
+		{
+			current_a->target_node = ft_finding_max(&b->head);
+			ft_printf("target node of A is: %d\n", current_a->target_node->value);
+		}
 		else
+		{
 			current_a->target_node = target_b;
+			ft_printf("target node of A is: %d\n", current_a->target_node->value);
+		}
 		current_a = current_a->next;
-        ft_printf("hi there\n");
-        // ft_printf("the target of A node in B is:%d\n", current_a->target_node);
+		ft_printf("hi there\n");
 	}
 }

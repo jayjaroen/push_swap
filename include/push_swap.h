@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/03 22:51:12 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/06 13:41:55 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 typedef struct s_node
 {
 	int				value;
-    int             index;
+    size_t			index;
     int             cost;
     bool            above_median;
     struct s_node   *target_node;
@@ -92,6 +92,6 @@ void	ft_add_list_back(t_stack *stack, int i);
 //stack initiation utility
 void	ft_init_stack_a(t_stack *stack_a, t_stack *stack_b);
 void	ft_find_index(t_node **head);
-void	ft_set_target_a(t_node **a, t_node **b);
+void	ft_set_target_a(t_stack *a, t_stack *b);
 
 #endif
