@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 22:10:59 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/06 15:04:05 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/07 16:39:26 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,51 @@ void	ft_set_target_a(t_stack *a, t_stack *b)
 	}
 }
 
+// The steps for A to be on top and the target node to be on top
 void	ft_cost_analysis_a(t_stack *a, t_stack *b)
 {
 	size_t	index;
 	t_node	*current_a;
-	t_node	*current_b;
 
 	index = -1;
 	current_a = a->head;
-	current_b = b->head;
 	while (++index < a->n)
 	{
-		
+		current_a->cost = current_a->index;
+		if (!current_a->above_median)
+			current_a->cost = a->n - current_a->index;
+		if (current_a->target_node->above_median)
+			current_a->cost += current_a->target_node->index;
+		else
+			current_a->cost += b->n - current_a->target_node->index;
+		ft_printf("the cost of a: %d is %d\n", current_a->value, current_a->cost);
+		current_a = current_a->next;
 	}
+}
+
+void	set_cheapest_cost(t_stack *stack)
+{
+	t_node	*current_node;
+	// t_node	*cheapest_node;
+	unsigned long	cheapest_value;
+	size_t	index;
+
+	if (!stack)
+		return ;
+	current_node = stack->head;
+	cheapest_value = LONG_MAX;
+	index = -1;
+	while (++index < stack->n)
+	{
+		if (current_node->cost < cheapest_value)
+		{
+			cheapest_value = current_node->cost;
+			stack->cheapest = current_node;
+			current_node->is_cheapest = true;
+		}
+		current_node = current_node->next;
+	}
+	// cheapest_node->is_cheapest = true;
+	// stack->cheapest = cheapest_node;
+	ft_printf("the cheapest node to push is: %d\n", stack->cheapest->value);
 }

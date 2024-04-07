@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/06 15:03:10 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:41:21 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 typedef struct s_node
 {
 	int				value;
-    size_t			index;
-    size_t          cost;
-    bool            above_median;
-    struct s_node   *target_node;
+	size_t			index;
+	size_t			cost;
+	bool			above_median;
+	bool			is_cheapest;
+	struct s_node	*target_node;
 	struct s_node	*next;
 	struct s_node	*previous;
 } t_node;
@@ -35,6 +36,7 @@ typedef struct s_stack
 	t_node	*head;//the top node
 	t_node	*max;
 	t_node	*min;
+	t_node	*cheapest;
 	size_t	n;//stack size of a && b
 } t_stack;
 
@@ -57,9 +59,9 @@ to the list*/
 
 // operations to be change later
 void	ft_add_node(t_node **list, t_node *new);
-void	ft_swap(t_node **list);
-void	ft_rotate(t_node **list);
-void	ft_rotate_reverse(t_node **list);
+void	ft_swap(t_stack *stack);
+void	ft_rotate(t_stack *stack);
+void	ft_rotate_reverse(t_stack *stack);
 void    ft_push(t_stack *stack_out, t_stack *stack_in, char out);
 
 // functions to create a node
@@ -93,5 +95,15 @@ void	ft_add_list_back(t_stack *stack, int i);
 void	ft_init_stack_a(t_stack *stack_a, t_stack *stack_b);
 void	ft_find_index(t_node **head);
 void	ft_set_target_a(t_stack *a, t_stack *b);
+
+//cost analysis
+void	ft_cost_analysis_a(t_stack *a, t_stack *b);
+void	set_cheapest_cost(t_stack *stack);
+
+//moving stacks
+void	ft_rotate_both(t_stack *a, t_stack *b);
+void	ft_reverse_rotate_both(t_stack *a, t_stack *b);
+void	ft_check_top(t_stack *stack, t_node *current_cheapest, char c);
+void	move_a_to_b(t_stack *a, t_stack *b);
 
 #endif

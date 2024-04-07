@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:32:25 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/06 13:45:43 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:40:56 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,50 +15,42 @@
 /* This file contains functions that move the element within the stack*/
 //the first element become last one (ra, rb)
 
-void	ft_rotate(t_node **list) //the first element become last one
+void	ft_rotate(t_stack *stack)
 {
-	if (!(*list) || (*list)->next == NULL)
+	if (!stack)
 		return ;
-	*list = (*list)->previous;
+	stack->head = stack->head->previous;
+}
+//the last element become the first one (rra, rrb)
+void	ft_rotate_reverse(t_stack *stack)
+{
+	if (!stack)
+		return ;
+	stack->head = stack->head->next;
 }
 
-//the last element become the first one (rra, rrb)
-void	ft_rotate_reverse(t_node **list)
-{
-	if(!(*list) || (*list)->next == NULL)
-		return ;
-	*list = (*list)->next;
-}
 
 // swap the position between the first top two elements
 // sa, sb
-void	ft_swap(t_node **list)
+void	ft_swap(t_stack *stack)
 {
-	t_node	*a;
-	t_node	*b;
-/// need to thinking about the only one node // two nodes///
-	if ((*list) -> next == NULL)
+	t_node	*tmp_a;
+	t_node	*tmp_b;
+	
+	if (!stack)
 		return ;
-	if ((*list) -> next == *list)
-	{
-		*list = (*list)->next; //looping condition already set at the previous function
-		return ;
-	}
-	a = *list;
-	b = (*list)->next;
-	a->next = b->next;
-	b->next = a;
-	a->next->previous = a;
-	b->previous = a->previous;
-	a->previous = b;
-	b->previous->next = b; // closing the circular loop
-	*list = b;
-	// b->previous = a;
-	// a->previous = b;
-	// a->next = b->next;
-	// b->previous = a->previous;
-	// b->previous->next = b;
+	tmp_a = stack->head;
+	tmp_b = stack->head->next;
+	tmp_a->next = tmp_b->next;
+	tmp_b->next = tmp_a;
+	tmp_a->next->previous = tmp_a;
+	tmp_b->previous = tmp_a->previous;
+	tmp_b->previous = tmp_b;
+	tmp_b->previous->next = tmp_b;
+	stack->head = tmp_b;
+
 }
+
 
 void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
 {
@@ -91,3 +83,41 @@ void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
 	ft_printf("p%c\n", out);
 	// ft_printf("hi there head_b: %p\n", stack_in->head);
 }
+///////////////-----------previous--------///////////////////////////////////////////
+
+// void	ft_rotate(t_node **list) //the first element become last one
+// {
+// 	if (!(*list) || (*list)->next == NULL)
+// 		return ;
+// 	*list = (*list)->previous;
+// }
+
+// void	ft_rotate_reverse(t_node **list)
+// {
+// 	if(!(*list) || (*list)->next == NULL)
+// 		return ;
+// 	*list = (*list)->next;
+// }
+
+// void	ft_swap(t_node **list)//previous
+// {
+// 	t_node	*a;
+// 	t_node	*b;
+// /// need to thinking about the only one node // two nodes///
+// 	if ((*list) -> next == NULL)
+// 		return ;
+// 	if ((*list) -> next == *list)
+// 	{
+// 		*list = (*list)->next; //looping condition already set at the previous function
+// 		return ;
+// 	}
+// 	a = *list;
+// 	b = (*list)->next;
+// 	a->next = b->next;
+// 	b->next = a;
+// 	a->next->previous = a;
+// 	b->previous = a->previous;
+// 	a->previous = b;
+// 	b->previous->next = b; // closing the circular loop
+// 	*list = b;
+// }
