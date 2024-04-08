@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:32:25 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/08 11:31:10 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:46:43 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,26 @@
 /* This file contains functions that move the element within the stack*/
 //the first element become last one (ra, rb)
 
-void	ft_rotate(t_stack *stack)
+void	ft_rotate(t_stack *stack, char c)
 {
 	if (stack->head && stack->n > 1)
 		stack->head = stack->head->previous;
+	if (c)
+		ft_printf("r%c\n", c);
 }
 //the last element become the first one (rra, rrb)
-void	ft_rotate_reverse(t_stack *stack)
+void	ft_rotate_reverse(t_stack *stack, char c)
 {
 	if (stack->head && stack->n > 1)
 		stack->head = stack->head->next;
+	if (c)
+		ft_printf("rr%c\n", c);
 }
 
 
 // swap the position between the first top two elements
 // sa, sb
-void	ft_swap(t_stack *stack)
+void	ft_swap(t_stack *stack, char c)
 {
 	t_node	*tmp_a;
 	t_node	*tmp_b;
@@ -41,22 +45,21 @@ void	ft_swap(t_stack *stack)
 	tmp_b = stack->head->next;
 	tmp_a->next = tmp_b->next;
 	tmp_b->next = tmp_a;
+	// tmp_a->next->previous = tmp_a;
 	tmp_a->next->previous = tmp_a;
 	tmp_b->previous = tmp_a->previous;
-	tmp_b->previous = tmp_b;
+	tmp_a->previous = tmp_b;
 	tmp_b->previous->next = tmp_b;
 	stack->head = tmp_b;
-
+	ft_printf("s%c\n", c);
 }
 
 
 void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
 {
-	//// also need to update min max after push, change the stack////
 	t_node	*extract;
 
 	extract = ft_extract_node(&stack_out->head);
-	// ft_update_info(stack_a, extract);
 	ft_add_node(&stack_in->head, extract);
 	stack_in->head = extract;
 	stack_out->n -= 1;
@@ -79,7 +82,6 @@ void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
     if (extract->value == stack_out->min->value)
 		stack_out->min = ft_finding_min(&stack_out->head);
 	ft_printf("p%c\n", out);
-	// ft_printf("hi there head_b: %p\n", stack_in->head);
 }
 ///////////////-----------previous--------///////////////////////////////////////////
 

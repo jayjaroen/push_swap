@@ -6,14 +6,14 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:27:08 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/30 16:47:47 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:07:09 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 #include "../include/libft.h"
 
-void	ft_print_output(t_node *list)
+void	ft_print_output(t_node *list, char *func)
 {
 	t_node	*head;
 
@@ -23,13 +23,14 @@ void	ft_print_output(t_node *list)
 	// ft_printf("the address of ptr: %p\n", head);
 	// ft_printf("the address of ptr -> next: %p\n", head->next);
 	// ft_printf("the refer of function: %p\n", &list);
-	while (1)
+	ft_printf ("-- all node debug from: %s --\n", func);
+	while (list)
 	{
 		ft_printf("addr: %p,  %d\n", list, list->value);
-		if (!list->next)
+		if (!list->next || list->next == head)
 			break ;
 		list = list->next;
-		if (list == head)
-			break;
+		// if (list == head)
+		// 	break;
 	}
 }

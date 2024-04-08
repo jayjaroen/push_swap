@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/08 11:41:10 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:06:11 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
-    // t_node *current;
-	int i;
+	int		i;
 
 	ft_bzero(&stack_a, sizeof(t_stack));
 	ft_bzero(&stack_b, sizeof(t_stack));
@@ -45,40 +44,16 @@ int	main(int argc, char **argv)
 		ft_add_list_back(&stack_a, ft_atoi(argv[i]));
 		i++;
 	}
-	// check duplicate number
-	// if duplicate, exit out
-	// count size
-	// small sort -> algo (within the stack)
 	// ft_check_duplicate_num(&list);
-	// size_arg = ft_count_node(&list);
 	ft_printf("-----------the stack_a before sorting-----------\n");
-	ft_print_output(stack_a.head);
+	ft_print_output(stack_a.head, "main");
 	ft_sort_stack(&stack_a, &stack_b);
-	// ft_print_output(stack_a.head); // the address of reference
-	// ft_printf("the total number of nodes: %d\n", ft_count_node(stack_a.head)); //already a pointer
-	// ft_printf("the maximum value of nodes: %d\n", stack_a.max->value);
-	// ft_printf("the minimum value of nodes: %d\n", stack_a.min->value);
-	/// check sort take head && min
-	// printf("%d\n", ft_is_sorted(stack_a.head));
-
-	// ft_print_output(stack_a.head);
-
 	ft_printf("------ stack a after sorting -------\n");
-	ft_print_output(stack_a.head);
+	ft_print_output(stack_a.head, "main");
+	ft_printf("the number of nodes in stack_A:%d\n", stack_a.n);
 	ft_printf("--------stack b after sorting--------\n");
-	ft_print_output(stack_b.head);
-    /// haven't set the max && min fo the stack_b (do we need to care about max && min)
-    // ft_printf("max node_b:%d\n", stack_b.max->value);
-    // current = stack_a.head;
-    // while (1)
-    // {
-    //     ft_printf("the index of the node: %d,  %d\n", current->value, current->index);
-	// 	if (!current->next)
-	// 		break ;
-	// 	current = current->next;
-	// 	if (current == stack_a.head)
-	// 		break;
-    // }
+	ft_print_output(stack_b.head, "main");
+	ft_printf("the number of nodes in stack_B:%d\n", stack_b.n);
 }
 
 

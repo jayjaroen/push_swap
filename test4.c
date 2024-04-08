@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 22:08:45 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/30 15:23:40 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:25:28 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,26 +311,7 @@ void    ft_push(t_node **stack_out, t_node **stack_in)
 	printf("hi there");
 }
 
-// size_t	ft_find_position_b(t_stack *stack_b, int value)
-// {
-// 	t_node	*ptr;
-// 	int		move;
 
-// 	ptr = stack_b->head;
-// 	move = 0;
-// 	while (1)
-// 	{
-// 		if ((ptr->value < value) && (value < ptr->previous->value))
-// 			break ;
-// 		move++;	
-// 		ptr = ptr->next;
-// 	}
-// 	return (move);	
-// }
-// void	ft_find_index(t_node *list)
-// {
-	
-// }
 
 void	ft_sort_large(t_stack *stack_a, t_stack *stack_b)
 {
