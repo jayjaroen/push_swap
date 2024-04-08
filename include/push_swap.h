@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/07 17:41:21 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:58:50 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_node
 
 typedef struct s_stack
 {
+	char 	name;
 	t_node	*head;//the top node
 	t_node	*max;
 	t_node	*min;
@@ -103,7 +104,8 @@ void	set_cheapest_cost(t_stack *stack);
 //moving stacks
 void	ft_rotate_both(t_stack *a, t_stack *b);
 void	ft_reverse_rotate_both(t_stack *a, t_stack *b);
-void	ft_check_top(t_stack *stack, t_node *current_cheapest, char c);
+void	ft_check_cheapest_top(t_stack *stack, t_node *current_cheapest, char c);
+void	ft_check_target_top(t_stack *stack, t_node *current_target, char c);
 void	move_a_to_b(t_stack *a, t_stack *b);
 
 #endif

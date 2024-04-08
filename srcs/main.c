@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/03 22:57:08 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:41:10 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	main(int argc, char **argv)
 
 	ft_bzero(&stack_a, sizeof(t_stack));
 	ft_bzero(&stack_b, sizeof(t_stack));
+	stack_a.name = 'A';
+	stack_b.name = 'B';
 	i = 1;
 	while (i < argc)
 	{
@@ -49,6 +51,8 @@ int	main(int argc, char **argv)
 	// small sort -> algo (within the stack)
 	// ft_check_duplicate_num(&list);
 	// size_arg = ft_count_node(&list);
+	ft_printf("-----------the stack_a before sorting-----------\n");
+	ft_print_output(stack_a.head);
 	ft_sort_stack(&stack_a, &stack_b);
 	// ft_print_output(stack_a.head); // the address of reference
 	// ft_printf("the total number of nodes: %d\n", ft_count_node(stack_a.head)); //already a pointer

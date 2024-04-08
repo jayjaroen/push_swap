@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:32:25 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/07 17:40:56 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:31:10 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,14 @@
 
 void	ft_rotate(t_stack *stack)
 {
-	if (!stack)
-		return ;
-	stack->head = stack->head->previous;
+	if (stack->head && stack->n > 1)
+		stack->head = stack->head->previous;
 }
 //the last element become the first one (rra, rrb)
 void	ft_rotate_reverse(t_stack *stack)
 {
-	if (!stack)
-		return ;
-	stack->head = stack->head->next;
+	if (stack->head && stack->n > 1)
+		stack->head = stack->head->next;
 }
 
 
