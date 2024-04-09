@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/08 17:21:48 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/09 21:56:36 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ void	ft_check_cheapest_top(t_stack *stack, t_node *current_cheapest, char c);
 void	ft_check_target_top(t_stack *stack, t_node *current_target, char c);
 void	move_a_to_b(t_stack *a, t_stack *b);
 void	move_b_to_a(t_stack *a, t_stack *b);
+void    ft_check_min_top(t_stack *a);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_stack_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 22:10:59 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/08 15:42:09 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/09 21:39:27 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_set_target_b(t_stack *a, t_stack *b)
 	long	best_match;
 	size_t	index_a;
 	size_t	index_b;
-	
+
 	current_b = b->head;
 	index_b = -1;
 	while (++index_b < b->n)
@@ -55,7 +55,7 @@ void	ft_set_target_b(t_stack *a, t_stack *b)
 		index_a = -1;
 		while (++index_a < a->n)
 		{
-			if ((current_a->value < current_b->value) &&
+			if ((current_a->value > current_b->value) &&
 			(current_a->value < best_match))
 			{
 				best_match = current_a->value;

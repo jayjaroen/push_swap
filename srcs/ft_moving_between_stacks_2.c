@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_moving_between_stacks_2.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:51:20 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/08 17:24:18 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/09 21:55:52 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,15 @@ void	ft_push_a(t_stack *a, t_stack *b)
 	if (extract->value < a->min->value)
 		a->min = extract;
 	ft_printf("pa\n");
+}
+
+void	ft_check_min_top(t_stack *a)
+{
+	while (a->head != a->min)
+	{
+		if (a->min->above_median)
+			ft_rotate(a, 'a');
+		else if (!a->min->above_median)
+			ft_rotate_reverse(a, 'a');
+	}
 }

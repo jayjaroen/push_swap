@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 13:18:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/09 21:25:52 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/09 21:57:13 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	ft_sort_large(t_stack *stack_a, t_stack *stack_b)
 		ft_init_stack_b(stack_a, stack_b);
 		move_b_to_a(stack_a, stack_b);
 	}
-	ft_printf("the number of stack a: %d\n", stack_a->n);
+    ft_find_index(&stack_a->head);
+	ft_check_min_top(stack_a);
 }
 
 void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b)
