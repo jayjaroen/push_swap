@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 22:04:18 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/08 16:29:28 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/09 21:27:00 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ void	ft_init_stack_a(t_stack *stack_a, t_stack *stack_b)
 void	ft_init_stack_b(t_stack *stack_a, t_stack *stack_b)
 {
 	ft_find_index(&stack_a->head);//there will be no used for index after this?
-	ft_find_index(&stack_b->head);
 	ft_set_target_b(stack_a, stack_b);
 }
