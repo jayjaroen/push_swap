@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 22:10:59 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/09 21:39:27 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/10 21:07:03 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_find_index(t_node **head)
 	size_t	i;
 	size_t	median;
 
-	// if (!head)
-	// 	return ;
+	if (!head)
+		return ;
 	current = *head;
 	i = 0;
 	median = ft_count_node(*head)/2;

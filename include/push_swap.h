@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/09 21:56:36 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/16 22:02:06 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ t_node	*ft_extract_node(t_node **list);
 
 // functions to check agruments
 int	ft_check_argv(int argc, char **argv);
-int	ft_is_valid(int argv);
+int	ft_is_valid(char *argv);
+int	ft_check_dup(char **argv, int argc);/// test
 
 //functions to sort stacks
 void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/08 14:06:11 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/16 22:20:15 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,92 @@
 	6. Sorting stack A (3 arguments -> tiny sort || more than 3):
 		6.1 push to stack B
 		6.2 the minimum steps to push A & b  */
-int	main(int argc, char **argv)
-{
-	t_stack	stack_a;
-	t_stack	stack_b;
-	int		i;
+//
+////////////// Test//////////////////////////////////////////////////////
+// int	ft_check_dup(char **argv, int argc)
+// {
+// 	int		i;
+// 	int		j;
 
-	ft_bzero(&stack_a, sizeof(t_stack));
-	ft_bzero(&stack_b, sizeof(t_stack));
-	stack_a.name = 'A';
-	stack_b.name = 'B';
-	i = 1;
-	while (i < argc)
+// 	if (!argv || !argc)
+// 		return (1);
+// 	i = 1;
+// 	while (i < argc)
+// 	{
+//         ft_printf("this is the first:%s\n", argv[i]);
+//         j = 1;
+// 		while (j < argc)
+// 		{
+// 			if (argv[i] == argv[j + 1])
+// 				return (1);
+//             ft_printf("this is the second:%s\n", argv[j]);
+//             j++;
+// 		}
+
+//         i++;
+// 	}
+// 	return (0);
+// }
+
+int main(int argc, char **argv)
+{
+    // int	i;
+
+    if (argc == 1 || (!argv[1][0]))
+        return (1);
+    else if (argc == 2)
 	{
-		ft_add_list_back(&stack_a, ft_atoi(argv[i]));
-		i++;
+		argv = ft_split(argv[1], ' ');
+		if (ft_check_argv(argc, argv))
+			return (1);
 	}
-	// ft_check_duplicate_num(&list);
-	ft_printf("-----------the stack_a before sorting-----------\n");
-	ft_print_output(stack_a.head, "main");
-	ft_sort_stack(&stack_a, &stack_b);
-	ft_printf("------ stack a after sorting -------\n");
-	ft_print_output(stack_a.head, "main");
-	ft_printf("the number of nodes in stack_A:%d\n", stack_a.n);
-	ft_printf("--------stack b after sorting--------\n");
-	ft_print_output(stack_b.head, "main");
-	ft_printf("the number of nodes in stack_B:%d\n", stack_b.n);
+	else //./push_swap "22 3 4" "3" "4"
+	{
+		if (ft_check_argv(argc, ++argv))
+		{
+			ft_printf("error!\n");
+			return (1);
+		}
+	}
+	while (*argv)
+	{
+		ft_printf("%s\n", *argv);
+		argv++;
+	}
+	// else if (argc > 3) // ./push_swap "22 3 4" "3" "4"
+	// calling push swap in another function
 }
+
+// int	main(int argc, char **argv)
+// {
+// 	t_stack	stack_a;
+// 	t_stack	stack_b;
+// 	int		i;
+
+// 	ft_bzero(&stack_a, sizeof(t_stack));
+// 	ft_bzero(&stack_b, sizeof(t_stack));
+// 	stack_a.name = 'A';
+// 	stack_b.name = 'B';
+// 	i = 1;
+// 	while (i < argc)
+// 	{
+// 		ft_add_list_back(&stack_a, ft_atoi(argv[i]));
+// 		i++;
+// 	}
+// 	// ft_check_duplicate_num(&list);
+// 	ft_printf("-----------the stack_a before sorting-----------\n");
+// 	ft_print_output(stack_a.head, "main");
+// 	ft_sort_stack(&stack_a, &stack_b);
+// 	ft_printf("------ stack a after sorting -------\n");
+// 	ft_print_output(stack_a.head, "main");
+// 	ft_printf("the number of nodes in stack_A:%d\n", stack_a.n);
+// 	ft_printf("--------stack b after sorting--------\n");
+// 	ft_print_output(stack_b.head, "main");
+// 	ft_printf("the number of nodes in stack_B:%d\n", stack_b.n);
+// }
+
+// adding new node -> check duplicate
+
 
 
 ///////////////////////////////Parking lot /////////////////////////////////////////////////////////

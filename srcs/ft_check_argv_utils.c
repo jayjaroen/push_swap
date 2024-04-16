@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_argv_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 22:09:26 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/24 17:47:59 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/16 22:30:22 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,39 +24,65 @@
 
 // ********Edit the printf function later***************
 	// to check if the argument is number and space
-int	ft_is_valid(int argv)
+int	ft_check_dup(char **argv, int argc)
 {
-	/// negative and postive ///
-	if ((argv >= '0' && argv <= '9') || (argv == 32))
-	{
-		ft_printf("the argument is valid\n");
-		return (0);
-	}
-	ft_printf("the argument is not valid\n");
-	return (1);
-}
+	int		i;
+	int		j;
 
-int    ft_check_argv(int argc, char **argv)
-{
-    int	i;
-	int	j;
-	int	result;
-
-	i = 1;
-	j = 0;
-	result = 0;
-	while (i < argc)
+	if (!argv || !argc)
+		return (1);
+	i = -1;
+	while (++i < argc)
 	{
-		j = 0;
-		while (argv[i][j])
+		j = i + 1;
+		while (j < argc - 1)
 		{
-			result = ft_is_valid((int)argv[i][j]);
-			if (result == 1)
-				return (result);
+			ft_printf("the first is%s, and the second is%s\n",argv[i], argv[j]);
+			if (argv[i] == argv[j])
+			{
+				ft_printf("duplicate number found!");
+				return (1);
+			}
 			j++;
 		}
-		i++;
 	}
+	return (0);
+}
+
+int	ft_is_valid(char *argv)
+{
+	/// negative and postive ///
+    char	*str;
+
+	str = argv;
+	while (*str)
+	{
+		if ((*str >= '0' && *str <= '9') || ((*str == '-' || *str == '+')
+				&& (*(str + 1) >= '0' && *(str + 1) <= '0'))) //space in the arguments
+			str++;
+		else
+		{
+			ft_printf("the argument is not valid\n");
+			return (1);
+		}
+	}
+	return (0);
+}
+
+int	ft_check_argv(int argc, char **argv)
+{
+	int	i;
+	int	result;
+
+	i = -1;
+	result = 0;
+	while (argv[++i])
+	{
+		result = ft_is_valid(argv[i]);
+		if (result == 1)
+			return (result);
+	}
+	result = ft_check_dup(argv, argc);
 	return (result);
 }
 // testing the function ////
@@ -84,7 +110,7 @@ int    ft_check_argv(int argc, char **argv)
 // 	} // then split the word
 // }
 
-// over flow int --> atoi // handle 
+// over flow int --> atoi // handle
 // duplicate
 // int	main(void)
 // {

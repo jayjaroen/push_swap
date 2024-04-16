@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 13:18:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/09 21:57:13 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/10 21:05:59 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b)
     ft_printf("am i back here yet\n");
 }
 
-// The following function is to see if the stack is sorted///
 bool	ft_is_sorted(t_node *head)
 {
 	t_node	*ptr;
