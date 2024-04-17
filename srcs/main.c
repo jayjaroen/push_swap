@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 17:17:48 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 23:14:00 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,65 +39,88 @@ void	ft_free_split(char **ptr)
 		free(ptr[i]);
 		i++;
 	}
-	free(ptr);	
+	free(ptr);
 }
 
 int main(int argc, char **argv)
 {
-    int		i;
-	int		result;
-	char	**str;
-	char	**ptr;
-	bool	valid;
 	t_stack	stack_a;
 	t_stack	stack_b;
+	int		result;
 
 	ft_bzero(&stack_a, sizeof(t_stack));
 	ft_bzero(&stack_b, sizeof(t_stack));
-	valid = true;
+	result = 0;
     if (argc == 1 || (!argv[1][0]))
         return (1);
     else if (argc >= 2)
-	{
-		i = 1;
-		while (i < argc)
-		{
-			str = ft_split(argv[i], ' ');
-			ptr = str;
-			while (*str != (void *)0)
-			{
-				result = ft_atol(*str, &valid);	
-				if (valid == false)
-				{
-					if (stack_a.head != NULL)
-						ft_free_node(&stack_a.head);
-					ft_free_split(ptr);
-					ft_printf("Error\n");
-					exit (1);
-				}
-				ft_add_list_back(&stack_a, result);
-				str++;
-			}
-			ft_free_split(ptr);
-			i++;
-		}	
-	}
+		push_swap(argv, argc, &stack_a, &result);
 	if (ft_check_dup(&stack_a, stack_a.n))
 	{
 		ft_free_node(&stack_a.head);
-		ft_printf("Error\n");
-		exit (1);
+		ft_write_error();
 	}
 	ft_sort_stack(&stack_a, &stack_b);
 	ft_free_node(&stack_a.head);
-	//////// FREE stack A ///////
-	// ft_printf("------ stack a after sorting -------\n");
-	// ft_print_output(stack_a.head, "main");
-	// ft_printf("the number of nodes in stack_A:%d\n", stack_a.n);
-	// ft_printf("--------stack b after sorting--------\n");
 	return (0);
 }
+//////////////////////// PREVIOUS MAIN ///////////////////////////////////
+// int main(int argc, char **argv)
+// {
+//     int		i;
+// 	int		result;
+// 	char	**str;
+// 	char	**ptr;
+// 	bool	valid;
+// 	t_stack	stack_a;
+// 	t_stack	stack_b;
 
+// 	ft_bzero(&stack_a, sizeof(t_stack));
+// 	ft_bzero(&stack_b, sizeof(t_stack));
+// 	valid = true;
+//     if (argc == 1 || (!argv[1][0]))
+//         return (1);
+//     else if (argc >= 2)
+// 	{
+// 		i = 1;
+// 		while (i < argc)
+// 		{
+
+// 			str = ft_split(argv[i], ' ');
+// 			ptr = str;
+// 			while (*str != (void *)0)
+// 			{
+// 				result = ft_atol(*str, &valid);
+// 				if (valid == false)
+// 				{
+// 					if (stack_a.head != NULL)
+// 						ft_free_node(&stack_a.head);
+// 					ft_free_split(ptr);
+// 					ft_putstr_fd("Error\n", 2);
+// 					exit (1);
+// 				}
+// 				ft_add_list_back(&stack_a, result);
+// 				str++;
+// 			}
+// 			ft_free_split(ptr);
+// 			i++;
+// 		}
+// 	}
+// 	if (ft_check_dup(&stack_a, stack_a.n))
+// 	{
+// 		ft_free_node(&stack_a.head);
+// 		ft_putstr_fd("Error\n", 2);
+// 		exit (1);
+// 	}
+// 	ft_sort_stack(&stack_a, &stack_b);
+// 	ft_free_node(&stack_a.head);
+// 	//////// FREE stack A ///////
+// 	// ft_printf("------ stack a after sorting -------\n");
+// 	// ft_print_output(stack_a.head, "main");
+// 	// ft_printf("the number of nodes in stack_A:%d\n", stack_a.n);
+// 	// ft_printf("--------stack b after sorting--------\n");
+// 	return (0);
+// }
 	// ft_printf("-----------the stack_a before sorting-----------\n");
 	// ft_print_output(stack_a.head, "main");
 	// ft_sort_stack(&stack_a, &stack_b);
@@ -121,7 +144,7 @@ int main(int argc, char **argv)
 // 	i = 1;
 // 	while (i < argc)
 // 	{
-// 		
+//
 // 	}
 // 	// ft_check_duplicate_num(&list);
 // 	ft_printf("-----------the stack_a before sorting-----------\n");

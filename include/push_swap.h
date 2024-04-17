@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 17:10:37 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 23:13:29 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,10 @@ void	move_a_to_b(t_stack *a, t_stack *b);
 void	move_b_to_a(t_stack *a, t_stack *b);
 void    ft_check_min_top(t_stack *a);
 
-//free
+//free && error handling
 void	ft_free_split(char **ptr);
+void	ft_free_error(char **ptr);
+void	ft_write_error(void);
+void    push_swap(char **argv, int argc, t_stack *stack_a, int *result);
 
 #endif
