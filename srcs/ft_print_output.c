@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:27:08 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/08 13:07:09 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:53:57 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ void	ft_print_output(t_node *list, char *func)
 	if (!list)
 		return ;
 	head = list;
-	// ft_printf("the address of ptr: %p\n", head);
-	// ft_printf("the address of ptr -> next: %p\n", head->next);
-	// ft_printf("the refer of function: %p\n", &list);
 	ft_printf ("-- all node debug from: %s --\n", func);
 	while (list)
 	{
@@ -30,7 +27,5 @@ void	ft_print_output(t_node *list, char *func)
 		if (!list->next || list->next == head)
 			break ;
 		list = list->next;
-		// if (list == head)
-		// 	break;
 	}
 }

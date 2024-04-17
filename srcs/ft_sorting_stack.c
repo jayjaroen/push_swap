@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sorting_stack.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 13:18:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/10 21:05:59 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:57:53 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,12 @@
 
 void	ft_sort_three(t_stack *stack)
 {
-	// 3 2 1
-	// 3 1 2
 	if (stack->head == stack->max)
     {
 		ft_rotate_reverse(stack, 'a');
 		if (stack->head->next == stack->min)
 			ft_swap(stack, 'a');
     }
-	// 1 3 2
 	else if (stack->head == stack->min)
 	{
 		if (stack->head->next == stack->max)
@@ -31,10 +28,7 @@ void	ft_sort_three(t_stack *stack)
 			ft_rotate(stack, 'a');
 			ft_swap(stack, 'a');
 		}
-
 	}
-	// 2 3 1
-	// 2 1 3
 	else
 	{
 		if (stack->head->next == stack->max)
@@ -46,7 +40,6 @@ void	ft_sort_three(t_stack *stack)
 
 void	ft_sort_large(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_printf("I am a ft_sort_large!!\n");
 	if (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
 		ft_push(stack_a, stack_b, 'b');
 	if (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
@@ -56,9 +49,7 @@ void	ft_sort_large(t_stack *stack_a, t_stack *stack_b)
         ft_init_stack_a(stack_a, stack_b);
 		move_a_to_b(stack_a, stack_b);
     }
-	ft_print_output(stack_a->head, "ft_sort_large");
 	ft_sort_three(stack_a);
-	ft_printf("the number of stack b: %d\n", stack_b->n);
 	while (stack_b->n > 0)
 	{
 		ft_init_stack_b(stack_a, stack_b);
@@ -73,15 +64,11 @@ void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b)
 	if (ft_is_sorted(stack_a->head))
 		return ;
 	else if (stack_a->n == 2)
-	{
 		ft_swap(stack_a, 'a');
-		ft_printf("sa\n");//swap
-	}
 	else if (stack_a->n == 3)
 		ft_sort_three(stack_a);
 	else if (stack_a->n > 3)
 		ft_sort_large(stack_a, stack_b);
-    ft_printf("am i back here yet\n");
 }
 
 bool	ft_is_sorted(t_node *head)

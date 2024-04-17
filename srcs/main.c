@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 12:15:06 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:26:27 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,42 +29,18 @@
 		6.1 push to stack B
 		6.2 the minimum steps to push A & b  */
 //
-////////////// Test//////////////////////////////////////////////////////
-// int	ft_check_dup(char **argv, int argc)
-// {
-// 	int		i;
-// 	int		j;
-
-// 	if (!argv || !argc)
-// 		return (1);
-// 	i = 1;
-// 	while (i < argc)
-// 	{
-//         ft_printf("this is the first:%s\n", argv[i]);
-//         j = 1;
-// 		while (j < argc)
-// 		{
-// 			if (argv[i] == argv[j + 1])
-// 				return (1);
-//             ft_printf("this is the second:%s\n", argv[j]);
-//             j++;
-// 		}
-
-//         i++;
-// 	}
-// 	return (0);
-// }
-// check duplicate
 int main(int argc, char **argv)
 {
     int		i;
 	int		result;
 	char	**str;
+	bool	valid;
 	t_stack	stack_a;
 	t_stack	stack_b;
 
 	ft_bzero(&stack_a, sizeof(t_stack));
 	ft_bzero(&stack_b, sizeof(t_stack));
+	valid = true;
     if (argc == 1 || (!argv[1][0]))
         return (1);
     else if (argc >= 2)
@@ -72,12 +48,11 @@ int main(int argc, char **argv)
 		i = 1;
 		while (i < argc)
 		{
-			ft_printf("am I here?\n");
 			str = ft_split(argv[i], ' ');
 			while (*str != (void *)0)
 			{
-				result = ft_atol(*str);
-				if (result > INT_MAX || result < INT_MIN || !result)
+				result = ft_atol(*str, &valid);	
+				if (valid == false)
 				{
 					if (stack_a.head != NULL)
 						ft_free_node(&stack_a.head);
@@ -90,8 +65,22 @@ int main(int argc, char **argv)
 			i++;
 		}	
 	}
-	ft_printf("-----------the stack_a before sorting-----------\n");
-	ft_print_output(stack_a.head, "main");
+	if (ft_check_dup(&stack_a, stack_a.n))
+	{
+		ft_free_node(&stack_a.head);
+		ft_printf("Error\n");
+		exit (1);
+	}
+	ft_sort_stack(&stack_a, &stack_b);
+	// ft_printf("------ stack a after sorting -------\n");
+	// ft_print_output(stack_a.head, "main");
+	// ft_printf("the number of nodes in stack_A:%d\n", stack_a.n);
+	// ft_printf("--------stack b after sorting--------\n");
+	return (0);
+}
+
+	// ft_printf("-----------the stack_a before sorting-----------\n");
+	// ft_print_output(stack_a.head, "main");
 	// ft_sort_stack(&stack_a, &stack_b);
 	// ft_printf("------ stack a after sorting -------\n");
 	// ft_print_output(stack_a.head, "main");
@@ -99,7 +88,6 @@ int main(int argc, char **argv)
 	// ft_printf("--------stack b after sorting--------\n");
 	// ft_print_output(stack_b.head, "main");
 	// ft_printf("the number of nodes in stack_B:%d\n", stack_b.n);
-}
 
 // int	main(int argc, char **argv)
 // {

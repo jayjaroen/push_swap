@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:28:13 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/30 16:28:13 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 14:04:34 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,5 @@ int	ft_count_node(t_node *list)
 		if (ptr == list)
 			break ;
 	}
-	ft_printf("the number of nodes is: %d\n", count);
 	return (count);
 }

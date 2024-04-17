@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 11:45:42 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:07:58 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,8 @@ void	ft_add_list_back_node(t_node **list, int i);
 t_node	*ft_extract_node(t_node **list);
 
 // functions to check agruments
-// int	ft_check_argv(int argc, char **argv);
-// int	ft_is_valid(char *argv);
-// int	ft_check_dup(char **argv, int argc);/// test
-int	ft_atol(const char *str);
+int		ft_atol(const char *str, bool *valid);
+bool	ft_check_dup(t_stack *stack, int num);
 
 //functions to sort stacks
 void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b);

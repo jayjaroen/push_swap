@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 14:46:47 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/08 17:00:22 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 14:02:39 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	ft_check_cheapest_top(t_stack *stack, t_node *current_cheapest, char c)
 }
 void	ft_rotate_both(t_stack *a, t_stack *b)
 {
-	ft_printf("I am ft_rotate_both\n");
 	while (a->head != a->cheapest && b->head != a->cheapest->target_node)
 	{
 		ft_rotate(a, 0);
@@ -59,7 +58,6 @@ void	ft_reverse_rotate_both(t_stack *a, t_stack *b)
 {
 	while (a->head != a->cheapest && b->head != a->cheapest->target_node)
 	{
-		// ft_printf("I am ft_reverse_rotate_both\n");
 		ft_rotate_reverse(a, 0);
 		ft_rotate_reverse(b, 0);
 		ft_printf("rrr\n");
@@ -68,7 +66,6 @@ void	ft_reverse_rotate_both(t_stack *a, t_stack *b)
 
 void	move_a_to_b(t_stack *a, t_stack *b)
 {
-	// ft_printf("I am a move_a_to_b function\n");
 	if (a->cheapest->above_median && a->cheapest->target_node->above_median)
 		ft_rotate_both(a,b);
 	else if ((!a->cheapest->above_median) && 
@@ -77,5 +74,4 @@ void	move_a_to_b(t_stack *a, t_stack *b)
 	ft_check_cheapest_top(a, a->cheapest, 'a');
 	ft_check_target_top(b, a->cheapest->target_node, 'b');
 	ft_push(a, b, 'b');
-	// ft_printf("I am about to leave move_a_to_b function\n");
 }

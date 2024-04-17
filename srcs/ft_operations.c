@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:32:25 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/08 14:46:43 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:49:20 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ void	ft_rotate_reverse(t_stack *stack, char c)
 		ft_printf("rr%c\n", c);
 }
 
-
-// swap the position between the first top two elements
-// sa, sb
 void	ft_swap(t_stack *stack, char c)
 {
 	t_node	*tmp_a;
@@ -45,7 +42,6 @@ void	ft_swap(t_stack *stack, char c)
 	tmp_b = stack->head->next;
 	tmp_a->next = tmp_b->next;
 	tmp_b->next = tmp_a;
-	// tmp_a->next->previous = tmp_a;
 	tmp_a->next->previous = tmp_a;
 	tmp_b->previous = tmp_a->previous;
 	tmp_a->previous = tmp_b;
@@ -76,7 +72,6 @@ void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
 			stack_in->max = extract;
 	}
 	stack_in->n += 1;
-	//setting min && max // update max and min every time after each operation
 	if (extract->value == stack_out->max->value)
 		stack_out->max = ft_finding_max(&stack_out->head);
     if (extract->value == stack_out->min->value)
