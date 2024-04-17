@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/16 22:20:15 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:15:06 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,34 +54,51 @@
 // 	}
 // 	return (0);
 // }
-
+// check duplicate
 int main(int argc, char **argv)
 {
-    // int	i;
+    int		i;
+	int		result;
+	char	**str;
+	t_stack	stack_a;
+	t_stack	stack_b;
 
+	ft_bzero(&stack_a, sizeof(t_stack));
+	ft_bzero(&stack_b, sizeof(t_stack));
     if (argc == 1 || (!argv[1][0]))
         return (1);
-    else if (argc == 2)
+    else if (argc >= 2)
 	{
-		argv = ft_split(argv[1], ' ');
-		if (ft_check_argv(argc, argv))
-			return (1);
-	}
-	else //./push_swap "22 3 4" "3" "4"
-	{
-		if (ft_check_argv(argc, ++argv))
+		i = 1;
+		while (i < argc)
 		{
-			ft_printf("error!\n");
-			return (1);
-		}
+			ft_printf("am I here?\n");
+			str = ft_split(argv[i], ' ');
+			while (*str != (void *)0)
+			{
+				result = ft_atol(*str);
+				if (result > INT_MAX || result < INT_MIN || !result)
+				{
+					if (stack_a.head != NULL)
+						ft_free_node(&stack_a.head);
+					ft_printf("Error\n");
+					exit (1);
+				}
+				ft_add_list_back(&stack_a, result);
+				str++;
+			}
+			i++;
+		}	
 	}
-	while (*argv)
-	{
-		ft_printf("%s\n", *argv);
-		argv++;
-	}
-	// else if (argc > 3) // ./push_swap "22 3 4" "3" "4"
-	// calling push swap in another function
+	ft_printf("-----------the stack_a before sorting-----------\n");
+	ft_print_output(stack_a.head, "main");
+	// ft_sort_stack(&stack_a, &stack_b);
+	// ft_printf("------ stack a after sorting -------\n");
+	// ft_print_output(stack_a.head, "main");
+	// ft_printf("the number of nodes in stack_A:%d\n", stack_a.n);
+	// ft_printf("--------stack b after sorting--------\n");
+	// ft_print_output(stack_b.head, "main");
+	// ft_printf("the number of nodes in stack_B:%d\n", stack_b.n);
 }
 
 // int	main(int argc, char **argv)
@@ -97,8 +114,7 @@ int main(int argc, char **argv)
 // 	i = 1;
 // 	while (i < argc)
 // 	{
-// 		ft_add_list_back(&stack_a, ft_atoi(argv[i]));
-// 		i++;
+// 		
 // 	}
 // 	// ft_check_duplicate_num(&list);
 // 	ft_printf("-----------the stack_a before sorting-----------\n");
