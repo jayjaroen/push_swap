@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 14:46:47 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 14:02:39 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:50:44 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,6 @@ void	ft_check_cheapest_top(t_stack *stack, t_node *current_cheapest, char c)
 			ft_rotate_reverse(stack, c);
 	}
 }
-void	ft_rotate_both(t_stack *a, t_stack *b)
-{
-	while (a->head != a->cheapest && b->head != a->cheapest->target_node)
-	{
-		ft_rotate(a, 0);
-		ft_rotate(b, 0);
-		ft_printf("rr\n");
-	}
-}
-
 void	ft_reverse_rotate_both(t_stack *a, t_stack *b)
 {
 	while (a->head != a->cheapest && b->head != a->cheapest->target_node)
@@ -61,6 +51,16 @@ void	ft_reverse_rotate_both(t_stack *a, t_stack *b)
 		ft_rotate_reverse(a, 0);
 		ft_rotate_reverse(b, 0);
 		ft_printf("rrr\n");
+	}
+}
+
+void	ft_rotate_both(t_stack *a, t_stack *b)
+{
+	while (a->head != a->cheapest && b->head != a->cheapest->target_node)
+	{
+		ft_rotate(a, 0);
+		ft_rotate(b, 0);
+		ft_printf("rr\n");
 	}
 }
 

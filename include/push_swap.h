@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 15:07:58 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:10:37 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,8 @@ void	ft_check_target_top(t_stack *stack, t_node *current_target, char c);
 void	move_a_to_b(t_stack *a, t_stack *b);
 void	move_b_to_a(t_stack *a, t_stack *b);
 void    ft_check_min_top(t_stack *a);
+
+//free
+void	ft_free_split(char **ptr);
 
 #endif

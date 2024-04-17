@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 13:18:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 13:57:53 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:11:04 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	ft_sort_three(t_stack *stack)
 {
 	if (stack->head == stack->max)
     {
-		ft_rotate_reverse(stack, 'a');
+		//3 2 1 -> 2 1 3
+		// 3 1 2 -> 1 2 3
+		ft_rotate(stack, 'a');
 		if (stack->head->next == stack->min)
 			ft_swap(stack, 'a');
     }
@@ -25,14 +27,14 @@ void	ft_sort_three(t_stack *stack)
 	{
 		if (stack->head->next == stack->max)
 		{
-			ft_rotate(stack, 'a');
+			ft_rotate_reverse(stack, 'a');
 			ft_swap(stack, 'a');
 		}
 	}
 	else
 	{
 		if (stack->head->next == stack->max)
-			ft_rotate(stack, 'a');
+			ft_rotate_reverse(stack, 'a');
 		else if (stack->head->next == stack->min)
 			ft_swap(stack, 'a');
 	}

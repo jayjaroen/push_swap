@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:32:25 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 13:49:20 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:10:15 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 /* This file contains functions that move the element within the stack*/
 //the first element become last one (ra, rb)
 
-void	ft_rotate(t_stack *stack, char c)
+void	ft_rotate_reverse(t_stack *stack, char c)
 {
 	if (stack->head && stack->n > 1)
 		stack->head = stack->head->previous;
 	if (c)
-		ft_printf("r%c\n", c);
+		ft_printf("rr%c\n", c);
 }
 //the last element become the first one (rra, rrb)
-void	ft_rotate_reverse(t_stack *stack, char c)
+void	ft_rotate(t_stack *stack, char c)
 {
 	if (stack->head && stack->n > 1)
 		stack->head = stack->head->next;
 	if (c)
-		ft_printf("rr%c\n", c);
+		ft_printf("r%c\n", c);
 }
 
 void	ft_swap(t_stack *stack, char c)

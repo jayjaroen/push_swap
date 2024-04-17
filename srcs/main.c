@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 15:26:27 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:17:48 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,25 @@
 		6.1 push to stack B
 		6.2 the minimum steps to push A & b  */
 //
+void	ft_free_split(char **ptr)
+{
+	int	i;
+
+	i = 0;
+	while (ptr[i] != NULL)
+	{
+		free(ptr[i]);
+		i++;
+	}
+	free(ptr);	
+}
+
 int main(int argc, char **argv)
 {
     int		i;
 	int		result;
 	char	**str;
+	char	**ptr;
 	bool	valid;
 	t_stack	stack_a;
 	t_stack	stack_b;
@@ -49,6 +63,7 @@ int main(int argc, char **argv)
 		while (i < argc)
 		{
 			str = ft_split(argv[i], ' ');
+			ptr = str;
 			while (*str != (void *)0)
 			{
 				result = ft_atol(*str, &valid);	
@@ -56,12 +71,14 @@ int main(int argc, char **argv)
 				{
 					if (stack_a.head != NULL)
 						ft_free_node(&stack_a.head);
+					ft_free_split(ptr);
 					ft_printf("Error\n");
 					exit (1);
 				}
 				ft_add_list_back(&stack_a, result);
 				str++;
 			}
+			ft_free_split(ptr);
 			i++;
 		}	
 	}
@@ -72,6 +89,8 @@ int main(int argc, char **argv)
 		exit (1);
 	}
 	ft_sort_stack(&stack_a, &stack_b);
+	ft_free_node(&stack_a.head);
+	//////// FREE stack A ///////
 	// ft_printf("------ stack a after sorting -------\n");
 	// ft_print_output(stack_a.head, "main");
 	// ft_printf("the number of nodes in stack_A:%d\n", stack_a.n);
