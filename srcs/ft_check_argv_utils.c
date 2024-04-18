@@ -6,20 +6,33 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 22:09:26 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 15:21:34 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:43:53 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+#include "../include/libft.h"
 
-// what this function is going to do
-// 1. Alpha or number
-// 2. if number return
-// 3. if not then, moving to split the word (characters)
-// 4. Duplicate number is not allow
-// 5. split the string arguments into words
-// 6. convert the argument from string to int atoi
-// 7. add the list to node
+bool	ft_is_valid(const char *str, bool *valid)
+{
+	if (*str)
+	{
+		if (*str != '\0')
+			*valid = false;
+		return (false);
+	}
+	return (true);
+}
+
+bool	ft_check_result_valid(long *result, bool *valid, int sign)
+{
+	if (*result > INT_MAX || (*result - 1 >= INT_MAX && sign == -1))
+	{
+		*valid = false;
+		return (false);
+	}
+	return (true);
+}
 
 int	ft_atol(const char *str, bool *valid)
 {
@@ -40,18 +53,12 @@ int	ft_atol(const char *str, bool *valid)
 	while (ft_isdigit(*str))
 	{
 		result = result * 10 + (*str - '0');
-		if (result > INT_MAX || (result - 1 >= INT_MAX && sign == -1))
-		{
-			*valid = false;
-			return (0);	
-		}
+		if (!ft_check_result_valid(&result, valid, sign))
+			return (0);
 		str++;
 	}
-	if (*str)
-	{
-		*valid = false;
+	if (!ft_is_valid(str, valid))
 		return (0);
-	} 
 	return (result * sign);
 }
 

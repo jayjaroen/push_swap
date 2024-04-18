@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 23:13:29 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:20:32 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ void	ft_find_index(t_node **head);
 void	ft_set_target_a(t_stack *a, t_stack *b);
 void	ft_set_target_b(t_stack *a, t_stack *b);
 
+//set best match
+void	set_best_match_b(t_node *a, t_node *b, long *best_match);
+void	set_best_match_a(t_node *a, t_node *b, long *best_match);
+
 //cost analysis
 void	ft_cost_analysis_a(t_stack *a, t_stack *b);
 void	set_cheapest_cost(t_stack *stack);
@@ -98,5 +102,7 @@ void	ft_free_split(char **ptr);
 void	ft_free_error(char **ptr);
 void	ft_write_error(void);
 void    push_swap(char **argv, int argc, t_stack *stack_a, int *result);
+bool	ft_is_valid(const char *str, bool *valid);
+bool	ft_check_result_valid(long *result, bool *valid, int sign);
 
 #endif

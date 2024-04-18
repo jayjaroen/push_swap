@@ -6,11 +6,10 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 22:10:59 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 14:00:25 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:26:57 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
 #include "../include/push_swap.h"
 
 void	ft_find_index(t_node **head)
@@ -23,7 +22,7 @@ void	ft_find_index(t_node **head)
 		return ;
 	current = *head;
 	i = 0;
-	median = ft_count_node(*head)/2;
+	median = ft_count_node(*head) / 2;
 	while (1)
 	{
 		current->index = i;
@@ -32,7 +31,7 @@ void	ft_find_index(t_node **head)
 		else
 			current->above_median = false;
 		current = current->next;
-        i++;
+		i++;
 		if (current == *head)
 			break ;
 	}
@@ -55,17 +54,11 @@ void	ft_set_target_b(t_stack *a, t_stack *b)
 		index_a = -1;
 		while (++index_a < a->n)
 		{
-			if ((current_a->value > current_b->value) &&
-			(current_a->value < best_match))
-			{
-				best_match = current_a->value;
-				current_b->target_node = current_a;
-			}
+			set_best_match_b(current_a, current_b, &best_match);
 			current_a = current_a->next;
 		}
 		if (best_match == LONG_MAX)
 			current_b->target_node = ft_finding_min(&a->head);
-		// ft_printf("target node of b %d in node a is %d\n",current_b->value, current_b->target_node->value);
 		current_b = current_b->next;
 	}
 }
@@ -87,17 +80,11 @@ void	ft_set_target_a(t_stack *a, t_stack *b)
 		index_b = -1;
 		while (++index_b < b->n)
 		{
-			if ((current_b->value < current_a->value) &&
-			(current_b->value > best_match))
-			{
-				best_match = current_b->value;
-				current_a->target_node = current_b;
-			}
+			set_best_match_a(current_a, current_b, &best_match);
 			current_b = current_b->next;
 		}
 		if (best_match == LONG_MIN)
 			current_a->target_node = ft_finding_max(&b->head);
-		// ft_printf("target node of A is: %d\n", current_a->target_node->value);
 		current_a = current_a->next;
 	}
 }
@@ -118,16 +105,15 @@ void	ft_cost_analysis_a(t_stack *a, t_stack *b)
 			current_a->cost += current_a->target_node->index;
 		else
 			current_a->cost += b->n - current_a->target_node->index;
-		// ft_printf("the cost of a: %d is %d\n", current_a->value, current_a->cost);
 		current_a = current_a->next;
 	}
 }
 
 void	set_cheapest_cost(t_stack *stack)
 {
-	t_node	*current_node;
+	t_node			*current_node;
 	unsigned long	cheapest_value;
-	size_t	index;
+	size_t			index;
 
 	if (!stack)
 		return ;
@@ -144,5 +130,4 @@ void	set_cheapest_cost(t_stack *stack)
 		}
 		current_node = current_node->next;
 	}
-	// ft_printf("the cheapest node to push is: %d\n", stack->cheapest->value);
 }

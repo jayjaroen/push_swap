@@ -6,7 +6,7 @@
 #    By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/01 14:56:58 by jjaroens          #+#    #+#              #
-#    Updated: 2024/04/08 15:52:13 by jjaroens         ###   ########.fr        #
+#    Updated: 2024/04/18 12:00:24 by jjaroens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,9 @@ NAME = push_swap
 SRCS = srcs/main.c srcs/push_swap.c srcs/ft_operations.c srcs/ft_node_utils.c \
 		srcs/ft_check_argv_utils.c srcs/ft_sorting_stack.c \
 		srcs/ft_stack_utils.c srcs/ft_print_output.c srcs/ft_finding_utils.c \
-		srcs/ft_init_stack.c srcs/ft_init_stack_utils.c  \
-		srcs/ft_moving_between_stacks.c srcs/ft_moving_between_stacks_2.c
+		srcs/ft_init_stack.c srcs/ft_init_stack_utils.c \
+		srcs/ft_moving_between_stacks.c srcs/ft_moving_between_stacks_2.c \
+		srcs/ft_find_best_match.c
 
 LIBFT = ./libft/libft.a
 
