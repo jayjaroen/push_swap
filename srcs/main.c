@@ -3,46 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 23:14:00 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:43:22 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 #include "../include/libft.h"
 
-/*The main function - Blue Print:
-	1. Receive the arguments
-	2. Check if the argument is valid: more than 1 argc. If only one argument,
-	exit the program
-	3. Check if the arguments are 2 argc, check if the second argument contains
-	many arguments inside, for instance, "1 2 3 4"
-		3.1 looping to check if the arguments contained only numbers - if not, then exit
-		3.2 Separate the words inside the arguments" 1 2 3 4"- after making sure that
-		it contains only numbers
-		3.3 Is there a repeat number in the stack? --> if there is, then exit (double loop?)
-	4. Creating a list of arguments A
-	5. Check if stack A is sorted - sorted then doing nothing
-	6. Sorting stack A (3 arguments -> tiny sort || more than 3):
-		6.1 push to stack B
-		6.2 the minimum steps to push A & b  */
-//
-void	ft_free_split(char **ptr)
-{
-	int	i;
-
-	i = 0;
-	while (ptr[i] != NULL)
-	{
-		free(ptr[i]);
-		i++;
-	}
-	free(ptr);
-}
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
@@ -51,9 +22,9 @@ int main(int argc, char **argv)
 	ft_bzero(&stack_a, sizeof(t_stack));
 	ft_bzero(&stack_b, sizeof(t_stack));
 	result = 0;
-    if (argc == 1 || (!argv[1][0]))
-        return (1);
-    else if (argc >= 2)
+	if (argc == 1 || (!argv[1][0]))
+		return (1);
+	else if (argc >= 2)
 		push_swap(argv, argc, &stack_a, &result);
 	if (ft_check_dup(&stack_a, stack_a.n))
 	{
@@ -64,7 +35,8 @@ int main(int argc, char **argv)
 	ft_free_node(&stack_a.head);
 	return (0);
 }
-//////////////////////// PREVIOUS MAIN ///////////////////////////////////
+
+//////////////////////// Parking lot ///////////////////////////////////
 // int main(int argc, char **argv)
 // {
 //     int		i;
@@ -159,10 +131,7 @@ int main(int argc, char **argv)
 // }
 
 // adding new node -> check duplicate
-
-
-
-///////////////////////////////Parking lot /////////////////////////////////////////////////////////
+///////////////////////////////Parking lot ////////////////////////////////
 // int	main(int argc, char **argv)
 // {
 // 	/// to include organize the file ft_count_node and all functions in the main
@@ -187,7 +156,7 @@ int main(int argc, char **argv)
 // 	// size_arg = ft_count_node(&list);
 // 	ft_sort_stack(&stack_a, &stack_b);
 // 	// ft_print_output(stack_a.head); // the address of reference
-// 	ft_printf("the total number of nodes: %d\n", ft_count_node(stack_a.head)); //already a pointer
+// 	ft_printf("the total number of nodes: %d\n", ft_count_node(stack_a.head));
 // 	ft_printf("the maximum value of nodes: %d\n", stack_a.max->value);
 // 	ft_printf("the minimum value of nodes: %d\n", stack_a.min->value);
 // 	/// check sort take head && min

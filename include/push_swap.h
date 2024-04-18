@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/18 12:20:32 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:37:56 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ typedef struct s_node
 
 typedef struct s_stack
 {
-	char 	name;
-	t_node	*head;//the top node
+	t_node	*head;
 	t_node	*max;
 	t_node	*min;
 	t_node	*cheapest;
-	size_t	n;//stack size of a && b
+	size_t	n;
 } t_stack;
 
 // operations to be change later
@@ -53,7 +52,6 @@ void	ft_add_node(t_node **list, t_node *new);
 void	ft_print_output(t_node *list, char *func);
 void	ft_free_node(t_node **list);
 void	ft_add_list_back(t_stack *list, int i);
-void	ft_add_list_back_node(t_node **list, int i);
 t_node	*ft_extract_node(t_node **list);
 
 // functions to check agruments
@@ -72,6 +70,9 @@ t_node  *ft_finding_min(t_node **head);
 
 //Stack Utility
 void	ft_add_list_back(t_stack *stack, int i);
+void	ft_set_head_node(t_stack *stack, t_node *new);
+void	ft_set_next_node(t_stack *stack, t_node *new, t_node *head);
+void	ft_set_nodes(t_stack *stack, t_node *new, t_node *head);
 
 //stack initiation utility
 void	ft_init_stack_a(t_stack *stack_a, t_stack *stack_b);

@@ -6,57 +6,63 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 15:50:27 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/03/30 15:52:59 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:39:41 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+void	ft_set_nodes(t_stack *stack, t_node *new, t_node *head)
+{
+	new -> next = head;
+	new -> previous = head -> previous;
+	new -> previous -> next = new;
+	head -> previous = new;
+	if (new->value > stack->max->value)
+		stack->max = new;
+	if (new->value < stack->min->value)
+		stack->min = new;
+}
+
+void	ft_set_next_node(t_stack *stack, t_node *new, t_node *head)
+{
+	new -> next = head;
+	new -> previous = head;
+	head -> previous = new;
+	head -> next = new;
+	if (new->value > stack->max->value)
+		stack->max = new;
+	if (new->value < stack->min->value)
+		stack->min = new;
+}
+
+void	ft_set_head_node(t_stack *stack, t_node *new)
+{
+	new -> previous = NULL;
+	new -> next = NULL;
+	stack->head = new;
+	stack->min = new;
+	stack->max = new;
+}
+
 void	ft_add_list_back(t_stack *stack, int i)
 {
 	t_node	*new;
-	t_node 	*head;
+	t_node	*head;
 
 	new = malloc(sizeof(t_node));
 	if (!new)
 	{
-		ft_free_node(&stack->head); //double pointer >reference of address of head is a double pointer
+		ft_free_node(&stack->head);
 		return ;
 	}
-
-	//need to free after --> error hand - check stack a & b
 	head = stack->head;
 	new -> value = i;
-	/// first node ////
 	if (head == NULL)
-	{
-		new -> previous = NULL;
-		new -> next = NULL;
-		stack->head = new;
-		stack->min = new;
-		stack->max = new;
-	}
-	else if (head->next == NULL) // only two node in the stack
-	{
-		new -> next = head;
-		new -> previous = head;
-		head -> previous = new;
-		head -> next = new;
-		if (new->value > stack->max->value)
-			stack->max = new;
-		if (new->value < stack->min->value)
-			stack->min = new;
-	}
+		ft_set_head_node(stack, new);
+	else if (head->next == NULL)
+		ft_set_next_node(stack, new, head);
 	else
-	{
-		new -> next = head;
-		new -> previous = head -> previous;
-		new -> previous -> next = new; // update the last node of the list
-		head -> previous = new;
-		if (new->value > stack->max->value)
-			stack->max = new;
-		if (new->value < stack->min->value)
-			stack->min = new;
-	}
-	stack->n += 1; //size of stack every time adding the new node 
+		ft_set_nodes(stack, new, head);
+	stack->n += 1;
 }

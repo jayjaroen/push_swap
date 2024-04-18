@@ -1,2 +1,9 @@
 a.out
 .gitignore
+checker_linux
+test.sh
+push_swap_visualizer
+a.out.dSYM
+checker_Mac(1)
+push_swap_visualizer
+*.o

@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaroens <jjaroens@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 22:09:27 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 23:17:21 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:44:47 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+#include "../include/libft.h"
+
+void	ft_free_split(char **ptr)
+{
+	int	i;
+
+	i = 0;
+	while (ptr[i] != NULL)
+	{
+		free (ptr[i]);
+		i++;
+	}
+	free (ptr);
+}
 
 void	ft_write_error(void)
 {
@@ -24,16 +38,16 @@ void	ft_free_error(char **ptr)
 	ft_write_error();
 }
 
-void    push_swap(char **argv, int argc, t_stack *stack_a, int *result)
+void	push_swap(char **argv, int argc, t_stack *stack_a, int *result)
 {
-    char    **str;
-    char    **ptr;
-    int     i;
+	char	**str;
+	char	**ptr;
+	int		i;
 	bool	valid;
 
 	i = 0;
 	valid = true;
-    while (++i < argc)
+	while (++i < argc)
 	{
 		str = ft_split(argv[i], ' ');
 		ptr = str;
@@ -50,5 +64,5 @@ void    push_swap(char **argv, int argc, t_stack *stack_a, int *result)
 			str++;
 		}
 		ft_free_split(ptr);
-    }
+	}
 }

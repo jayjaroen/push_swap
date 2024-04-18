@@ -6,14 +6,11 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:32:25 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 16:10:15 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:17:29 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-/* This file contains functions that move the element within the stack*/
-//the first element become last one (ra, rb)
 
 void	ft_rotate_reverse(t_stack *stack, char c)
 {
@@ -22,7 +19,7 @@ void	ft_rotate_reverse(t_stack *stack, char c)
 	if (c)
 		ft_printf("rr%c\n", c);
 }
-//the last element become the first one (rra, rrb)
+
 void	ft_rotate(t_stack *stack, char c)
 {
 	if (stack->head && stack->n > 1)
@@ -35,7 +32,7 @@ void	ft_swap(t_stack *stack, char c)
 {
 	t_node	*tmp_a;
 	t_node	*tmp_b;
-	
+
 	if (!stack)
 		return ;
 	tmp_a = stack->head;
@@ -50,8 +47,7 @@ void	ft_swap(t_stack *stack, char c)
 	ft_printf("s%c\n", c);
 }
 
-
-void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
+void	ft_push(t_stack *stack_out, t_stack *stack_in, char out)
 {
 	t_node	*extract;
 
@@ -74,11 +70,12 @@ void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
 	stack_in->n += 1;
 	if (extract->value == stack_out->max->value)
 		stack_out->max = ft_finding_max(&stack_out->head);
-    if (extract->value == stack_out->min->value)
+	if (extract->value == stack_out->min->value)
 		stack_out->min = ft_finding_min(&stack_out->head);
 	ft_printf("p%c\n", out);
 }
-///////////////-----------previous--------///////////////////////////////////////////
+
+///////////////-----------previous--------/////////////////////////////////////
 
 // void	ft_rotate(t_node **list) //the first element become last one
 // {
@@ -103,7 +100,7 @@ void    ft_push(t_stack *stack_out, t_stack *stack_in, char out)
 // 		return ;
 // 	if ((*list) -> next == *list)
 // 	{
-// 		*list = (*list)->next; //looping condition already set at the previous function
+// 		*list = (*list)->next; \
 // 		return ;
 // 	}
 // 	a = *list;

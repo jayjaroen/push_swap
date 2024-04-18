@@ -6,23 +6,20 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 13:18:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/17 16:11:04 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:21:07 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include "../include/libft.h"
 
 void	ft_sort_three(t_stack *stack)
 {
 	if (stack->head == stack->max)
-    {
-		//3 2 1 -> 2 1 3
-		// 3 1 2 -> 1 2 3
+	{
 		ft_rotate(stack, 'a');
 		if (stack->head->next == stack->min)
 			ft_swap(stack, 'a');
-    }
+	}
 	else if (stack->head == stack->min)
 	{
 		if (stack->head->next == stack->max)
@@ -46,18 +43,18 @@ void	ft_sort_large(t_stack *stack_a, t_stack *stack_b)
 		ft_push(stack_a, stack_b, 'b');
 	if (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
 		ft_push(stack_a, stack_b, 'b');
-    while (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
-    {
-        ft_init_stack_a(stack_a, stack_b);
+	while (stack_a->n > 3 && !ft_is_sorted(stack_a->head))
+	{
+		ft_init_stack_a(stack_a, stack_b);
 		move_a_to_b(stack_a, stack_b);
-    }
+	}
 	ft_sort_three(stack_a);
 	while (stack_b->n > 0)
 	{
 		ft_init_stack_b(stack_a, stack_b);
 		move_b_to_a(stack_a, stack_b);
 	}
-    ft_find_index(&stack_a->head);
+	ft_find_index(&stack_a->head);
 	ft_check_min_top(stack_a);
 }
 
