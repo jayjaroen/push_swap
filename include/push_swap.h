@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 20:13:37 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/18 13:37:56 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:01:58 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_node
 	struct s_node	*target_node;
 	struct s_node	*next;
 	struct s_node	*previous;
-} t_node;
+}	t_node;
 
 typedef struct s_stack
 {
@@ -35,14 +35,14 @@ typedef struct s_stack
 	t_node	*min;
 	t_node	*cheapest;
 	size_t	n;
-} t_stack;
+}	t_stack;
 
-// operations to be change later
+// operations
 void	ft_add_node(t_node **list, t_node *new);
 void	ft_swap(t_stack *stack, char c);
 void	ft_rotate(t_stack *stack, char c);
 void	ft_rotate_reverse(t_stack *stack, char c);
-void    ft_push(t_stack *stack_out, t_stack *stack_in, char out);
+void	ft_push(t_stack *stack_out, t_stack *stack_in, char out);
 void	ft_push_a(t_stack *a, t_stack *b);
 
 // functions to create a node
@@ -63,10 +63,10 @@ void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b);
 void	ft_sort_three(t_stack *stack);
 
 //Node Utility functions
-int	ft_count_node(t_node *list);
+int		ft_count_node(t_node *list);
 bool	ft_is_sorted(t_node *head);
-t_node    *ft_finding_max(t_node **head);
-t_node  *ft_finding_min(t_node **head);
+t_node	*ft_finding_max(t_node **head);
+t_node	*ft_finding_min(t_node **head);
 
 //Stack Utility
 void	ft_add_list_back(t_stack *stack, int i);
@@ -96,14 +96,15 @@ void	ft_check_cheapest_top(t_stack *stack, t_node *current_cheapest, char c);
 void	ft_check_target_top(t_stack *stack, t_node *current_target, char c);
 void	move_a_to_b(t_stack *a, t_stack *b);
 void	move_b_to_a(t_stack *a, t_stack *b);
-void    ft_check_min_top(t_stack *a);
+void	ft_check_min_top(t_stack *a);
 
 //free && error handling
 void	ft_free_split(char **ptr);
 void	ft_free_error(char **ptr);
 void	ft_write_error(void);
-void    push_swap(char **argv, int argc, t_stack *stack_a, int *result);
+void	push_swap(char **argv, int argc, t_stack *stack_a, int *result);
 bool	ft_is_valid(const char *str, bool *valid);
 bool	ft_check_result_valid(long *result, bool *valid, int sign);
+void	ft_check_head_free(t_stack *stack_a, char **ptr);
 
 #endif
