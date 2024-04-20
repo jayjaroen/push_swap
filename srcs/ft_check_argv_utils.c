@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 22:09:26 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/18 11:43:53 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:21:42 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	ft_is_valid(const char *str, bool *valid)
 
 bool	ft_check_result_valid(long *result, bool *valid, int sign)
 {
-	if (*result > INT_MAX || (*result - 1 >= INT_MAX && sign == -1))
+	if ((*result * sign) < INT_MIN || (*result * sign) > INT_MAX)
 	{
 		*valid = false;
 		return (false);
