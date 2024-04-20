@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 22:09:27 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/18 13:44:47 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:59:33 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ void	ft_free_error(char **ptr)
 	ft_write_error();
 }
 
+void	ft_check_head_free(t_stack *stack_a, char **ptr)
+{
+	if (stack_a->head != NULL)
+		ft_free_node(&stack_a->head);
+	ft_free_error(ptr);
+}
+
 void	push_swap(char **argv, int argc, t_stack *stack_a, int *result)
 {
 	char	**str;
@@ -51,15 +58,13 @@ void	push_swap(char **argv, int argc, t_stack *stack_a, int *result)
 	{
 		str = ft_split(argv[i], ' ');
 		ptr = str;
+		if (*str == NULL )
+			ft_check_head_free(stack_a, ptr);
 		while (*str != (void *)0)
 		{
 			*result = ft_atol(*str, &valid);
 			if (valid == false)
-			{
-				if (stack_a->head != NULL)
-					ft_free_node(&stack_a->head);
-				ft_free_error(ptr);
-			}
+				ft_check_head_free(stack_a, ptr);
 			ft_add_list_back(stack_a, *result);
 			str++;
 		}

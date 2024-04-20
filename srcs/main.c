@@ -6,7 +6,7 @@
 /*   By: jjaroens <jjaroens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 12:01:48 by jjaroens          #+#    #+#             */
-/*   Updated: 2024/04/18 13:43:22 by jjaroens         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:46:30 by jjaroens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	ft_bzero(&stack_a, sizeof(t_stack));
 	ft_bzero(&stack_b, sizeof(t_stack));
 	result = 0;
-	if (argc == 1 || (!argv[1][0]))
+	if (argc == 1)
 		return (1);
 	else if (argc >= 2)
 		push_swap(argv, argc, &stack_a, &result);

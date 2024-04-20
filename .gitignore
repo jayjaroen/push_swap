@@ -7,3 +7,4 @@ a.out.dSYM
 checker_Mac(1)
 push_swap_visualizer
 *.o
+.vscode
